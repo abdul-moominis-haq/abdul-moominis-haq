@@ -22,14 +22,17 @@ Expected Graduation: October 2025
 West African Senior Secondary School Certificate Examination (WASSCE) in General Science
 Bawku Senior High/Technical School (Bawku SHTS), Bawku
 Graduated: September 2018 – October 2021
+
 ## Highlights
 Pro Membership on GitHub
 ## Organizations
 Kowordatech
 UMaT Virtual Internship Platform Dev Team
 TECHPOOL
+
 ## Projects
-Public Repositories
+
+## Public Repositories
 abdul-moomin_Is-haq_portfolio
 
 Description: My personal portfolio website.
@@ -78,9 +81,9 @@ solar-system
 
 Description: Computer graphics project of the solar system.
 Technologies: JavaScript
-Private Repositories (Selected Projects)
-INVENTORY_MGT
 
+### Private Repositories 
+INVENTORY_MGT
 Description: Inventory Management Software for a Drilling Company in Ghana.
 Technologies: TypeScript
 AgriIoTMobileApp

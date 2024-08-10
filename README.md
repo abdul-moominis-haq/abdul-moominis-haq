@@ -7,8 +7,8 @@ Pronouns: He/Him
 ## Contact Information
 Tel: +233 249819285
 GitHub: abdul-moominis-haq
-Portfolio: abdul-moominis-haq.github.io/abdul-moominis-haq
-LinkedIn: in/is-haq-abdul-moomin-436283231
+Portfolio: abdul-moominis-haq.github.io/abdul-moominis-haq/
+LinkedIn: in/is-haq-abdul-moomin-436283231/
 Twitter: @Haq21Abdul
 Instagram: abdul.ishaq22
 Facebook: is_haq_ibn_abdul_moomin

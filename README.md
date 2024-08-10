@@ -5,6 +5,7 @@ Location: Tarkwa, Ghana
 Pronouns: He/Him
 
 ## Contact Information
+Tel: +233 249819285
 GitHub: abdul-moominis-haq
 Portfolio: abdul-moominis-haq.github.io/abdul-moominis-haq
 LinkedIn: in/is-haq-abdul-moomin-436283231

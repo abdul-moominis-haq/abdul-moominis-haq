@@ -83,6 +83,9 @@ solar-system
 Description: Computer graphics project of the solar system.
 Technologies: JavaScript
 
+Description: smartpower
+Technologies: Dart
+
 ### Private Repositories 
 INVENTORY_MGT
 Description: Inventory Management Software for a Drilling Company in Ghana.

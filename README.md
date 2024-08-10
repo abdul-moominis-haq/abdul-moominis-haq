@@ -1,6 +1,6 @@
 ### Hi I'm IS-HAQ ABDUL-MOOMIN
 
-Aspiring Full Stack Developer 
+# Aspiring Full Stack Developer 
 Location: Tarkwa, Ghana
 Pronouns: He/Him
 

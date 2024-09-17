@@ -13,7 +13,8 @@ Twitter: @Haq21Abdul
 Instagram: abdul.ishaq22
 Facebook: is_haq_ibn_abdul_moomin
 ## Summary
-I am a passionate and motivated individual focused on becoming a proficient Full Stack Developer. My interests span software and hardware design, graphic design, and activism, especially within the Islamic community. I am dedicated to continuous learning, teamwork, and achieving excellence in all my endeavors.
+Currently a Computer Science and Engineering student at the University of Mines and Technology-UMaT, Tarkwa, Ghana.
+I am a passionate Frontend Developer with skills in developing and implementing innovative software solutions. I am dedicated to delivering software solutions that drive business success. I am eager to learn and contribute my expertise to a forward-thinking organization that values innovation, teamwork, and continuous learning.
 
 ## Education
 BSc. Computer Science and Engineering

@@ -9,6 +9,8 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: linear-gradient(to top left, #9cd1c0, #1ffd02 );
   
 }
 
@@ -434,3 +436,97 @@ footer {
 footer p {
   text-align: center;
 }
+
+
+img {
+  max-width: 100%; /* Ensures image doesn’t overflow its container */
+  height: auto; 
+  align-items: center;   /* Keeps the image's aspect ratio */
+}
+
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 18px; /* Increase font size for tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 20px; /* Further increase for desktops */
+  }
+}
+
+
+button, a {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+
+/* Base styles (mobile-first) */
+body {
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.nav-links {
+  display: none;
+}
+
+.hamburger-menu {
+  display: block;
+}
+
+.section__text__p1 {
+  font-size: 1.2rem;
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+
+  .hamburger-menu {
+    display: none;
+  }
+
+  .section__text__p1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    justify-content: space-around;
+  }
+
+  .section__text__p1 {
+    font-size: 1.8rem;
+  }
+}
+
+
+
+ /* Base styles (mobile-first) */
+.btn {
+  transition: transform 0.3s ease;
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2); /* Increase size on hover */
+}
+

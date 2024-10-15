@@ -101,3 +101,36 @@
     text-align: justify;
   }
 }
+
+/* Mobile screens (default styles) */
+
+/* Tablets and small desktops */
+@media (min-width: 768px) {
+  /* Adjust layout for medium-sized devices */
+}
+
+/* Larger desktops */
+@media (min-width: 1024px) {
+  /* Adjust layout for larger screens */
+}
+
+/* Mobile (default) */
+#desktop-nav {
+  display: none; /* Hide the desktop nav on mobile */
+}
+
+#hamburger-nav {
+  display: flex; /* Show hamburger nav */
+}
+
+/* Tablet and larger screens */
+@media (min-width: 768px) {
+  #hamburger-nav {
+    display: none; /* Hide hamburger nav */
+  }
+
+  #desktop-nav {
+    display: flex; /* Show desktop nav */
+  }
+}
+

@@ -23,8 +23,8 @@
 I'm a passionate Software Engineer and currently pursuing a degree in Computer Science and Engineering at the **University of Mines and Technology (UMaT)**, Tarkwa, Ghana.
 
 - :telescope: I specialize in developing and implementing innovative software solutions that drive business success.
-- :seedling: I have strong skills in frontend and backend development, always eager to learn new technologies and solve challenging problems.
-- :zap: In my free time, I explore **3D modeling using Blender**, designing digital environments and assets. I also enjoy competitive problem-solving on platforms like **HackerRank**, sharpening my algorithmic thinking and coding skills.
+- :seedling: I have skills in frontend and backend development, always eager to learn new technologies and solve challenging problems.
+- :zap: In my free time, I explore **Graphic Deisgning using PhotoShop**, designing digital environments and assets. I also enjoy competitive problem-solving on platforms like **HackerRank**, sharpening my algorithmic thinking and coding skills.
 - :star: I am enthusiastic about contributing my expertise to organizations that value **innovation, teamwork**, and **continuous learning**.
 
 - :mailbox: **How to reach me:** [![Gmail Badge](https://img.shields.io/badge/Gmail-Email%20Me-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abdulmoominishaq21@gmail.com)
@@ -37,13 +37,13 @@ I'm a passionate Software Engineer and currently pursuing a degree in Computer S
   <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg" title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg" title="Python" alt="Python" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/django/django-plain.svg" title="Django" alt="Django" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/flask/flask-original.svg" title="Flask" alt="Flask" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/blender/blender-original.svg" title="Blender" alt="Blender" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original.svg" title="Next.js" alt="Next.js" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL" alt="MySQL" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" alt="Git" width="40" height="40"/>&nbsp;
 </div>
+
 
 ---
 

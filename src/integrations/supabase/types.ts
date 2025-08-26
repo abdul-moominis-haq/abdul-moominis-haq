@@ -14,7 +14,156 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_inquiries: {
+        Row: {
+          budget: string | null
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          project: string | null
+          responded_at: string | null
+          response_message: string | null
+          status: string | null
+          timeline: string | null
+          updated_at: string
+        }
+        Insert: {
+          budget?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          project?: string | null
+          responded_at?: string | null
+          response_message?: string | null
+          status?: string | null
+          timeline?: string | null
+          updated_at?: string
+        }
+        Update: {
+          budget?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          project?: string | null
+          responded_at?: string | null
+          response_message?: string | null
+          status?: string | null
+          timeline?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      meeting_requests: {
+        Row: {
+          admin_notes: string | null
+          agenda: string | null
+          approved_date: string | null
+          company: string | null
+          created_at: string
+          duration: number | null
+          email: string
+          id: string
+          meeting_link: string | null
+          meeting_type: string
+          message: string | null
+          name: string
+          proposed_date: string
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          agenda?: string | null
+          approved_date?: string | null
+          company?: string | null
+          created_at?: string
+          duration?: number | null
+          email: string
+          id?: string
+          meeting_link?: string | null
+          meeting_type: string
+          message?: string | null
+          name: string
+          proposed_date: string
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          agenda?: string | null
+          approved_date?: string | null
+          company?: string | null
+          created_at?: string
+          duration?: number | null
+          email?: string
+          id?: string
+          meeting_link?: string | null
+          meeting_type?: string
+          message?: string | null
+          name?: string
+          proposed_date?: string
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          content: string
+          id: string
+          recipient_email: string
+          related_inquiry_id: string | null
+          related_meeting_id: string | null
+          sent_at: string
+          subject: string
+          type: string
+        }
+        Insert: {
+          content: string
+          id?: string
+          recipient_email: string
+          related_inquiry_id?: string | null
+          related_meeting_id?: string | null
+          sent_at?: string
+          subject: string
+          type: string
+        }
+        Update: {
+          content?: string
+          id?: string
+          recipient_email?: string
+          related_inquiry_id?: string | null
+          related_meeting_id?: string | null
+          sent_at?: string
+          subject?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_related_inquiry_id_fkey"
+            columns: ["related_inquiry_id"]
+            isOneToOne: false
+            referencedRelation: "contact_inquiries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_related_meeting_id_fkey"
+            columns: ["related_meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meeting_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

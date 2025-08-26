@@ -16,6 +16,7 @@ import {
   Clock
 } from "lucide-react";
 import toast from "react-hot-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const InteractiveContactForm = () => {
   const [formData, setFormData] = useState({
@@ -69,12 +70,31 @@ const InteractiveContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const { error } = await supabase.functions.invoke('contact-inquiry', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          project: formData.project,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          message: formData.message
+        }
+      });
 
-    setIsSubmitted(true);
-    setIsSubmitting(false);
-    toast.success("Message sent! I'll get back to you within 24 hours 🚀");
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      setIsSubmitted(true);
+      toast.success("Message sent! I'll get back to you within 24 hours 🚀");
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const quickActions = [

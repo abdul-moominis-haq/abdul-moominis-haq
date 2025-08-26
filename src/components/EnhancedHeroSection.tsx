@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Github, Linkedin, Mail, Phone, MapPin, Download, Sparkles, Zap } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, Download, Sparkles, Zap, Calendar } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const EnhancedHeroSection = () => {
@@ -218,6 +218,18 @@ const EnhancedHeroSection = () => {
               <Button 
                 size="lg" 
                 className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                onClick={() => document.getElementById('meeting')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Calendar className="w-5 h-5 mr-2" />
+                Schedule Meeting
+              </Button>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <Mail className="w-5 h-5 mr-2" />
                 Let's Connect

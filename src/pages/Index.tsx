@@ -18,8 +18,8 @@ const Index = () => {
     "description": "Experienced software engineer specializing in AI, full-stack development, and innovative solutions for AgriTech, Health AI, and Finance.",
     "url": window.location.origin,
     "sameAs": [
-      "https://linkedin.com/in/yourprofile",
-      "https://github.com/yourprofile"
+      "https://www.linkedin.com/in/ishaqabdulmoomin/",
+      "https://github.com/abdul-moominis-haq/"
     ],
     "knowsAbout": [
       "Software Engineering",
@@ -43,7 +43,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>IS-HAQ ABDUL-MOOMIN - Full-Stack Developer & AI Engineer | Portfolio</title>
+        <title>IS-HAQ ABDUL-MOOMIN</title>
         <meta name="description" content="Experienced software engineer specializing in AI, full-stack development, and innovative solutions. Expert in React, Supabase, AgriTech, Health AI, and Finance technology." />
         <meta name="keywords" content="software engineer, full-stack developer, AI engineer, React, Supabase, SQL, AgriTech, Health AI, Finance technology, web development" />
         <meta name="author" content="IS-HAQ ABDUL-MOOMIN" />

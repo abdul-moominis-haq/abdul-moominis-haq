@@ -141,14 +141,14 @@ const EnhancedHeroSection = () => {
               className="text-xl md:text-2xl text-accent-light font-medium mb-2"
               variants={itemVariants}
             >
-              AI-Powered Full-Stack Engineer
+            Full-Stack Software Engineer
             </motion.div>
             <motion.div 
               className="text-lg text-white/80 mb-6 flex items-center justify-center gap-2"
               variants={itemVariants}
             >
               <MapPin className="w-5 h-5" />
-              Ghana • Remote Ready
+              Ghanaian Citizen
             </motion.div>
           </motion.div>
 
@@ -214,38 +214,47 @@ const EnhancedHeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             variants={containerVariants}
           >
+            <a 
+  href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Meeting+with+Ishaq+Abdul-Moomin&details=Let%27s+discuss+opportunities&location=Google+Meet&dates=20250824T120000Z/20250824T130000Z&add=abdulmoominishaq21@gmail.com" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="inline-block"
+>
+  <Button 
+    size="lg" 
+    variant="outline" 
+    className="border-green-500 text-green-500 hover:bg-green-500/10 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105"
+  >
+    <Calendar className="w-5 h-5 mr-2" />
+    Schedule Meeting
+  </Button>
+</a>
+
             <motion.div variants={itemVariants}>
-              <Button 
-                size="lg" 
-                className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                onClick={() => document.getElementById('meeting')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Calendar className="w-5 h-5 mr-2" />
-                Schedule Meeting
-              </Button>
+             <a 
+  href="https://www.linkedin.com/in/ishaqabdulmoomin/" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <Button 
+    size="lg" 
+    variant="outline" 
+    className="border-white/30 text-primary hover:bg-white/10 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105"
+  >
+    <Mail className="w-5 h-5 mr-2" />
+    Let's Connect
+  </Button>
+</a>
+
             </motion.div>
             <motion.div variants={itemVariants}>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Mail className="w-5 h-5 mr-2" />
-                Let's Connect
+              <a href="https://drive.google.com/file/d/1EGMFBZJ03HmP8cuXJoantroQCrIGvO1V/view?usp=drive_link" download className="inline-block">
+              <Button size="lg" variant="outline" className="border-primary/30 text-primary hover:bg-white/10 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105">
+              <Download className="w-5 h-5 mr-2" /> Download CV
               </Button>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105"
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Download CV
-              </Button>
-            </motion.div>
-          </motion.div>
+              </a>
+              </motion.div>
+              </motion.div>
 
           {/* Enhanced social links */}
           <motion.div 

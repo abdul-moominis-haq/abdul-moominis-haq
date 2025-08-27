@@ -87,7 +87,7 @@ const HeroSection = () => {
               <Github className="w-6 h-6" />
             </a>
             <a 
-              href="#" 
+              href="https://www.linkedin.com/in/ishaqabdulmoomin/" 
               className="p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
               aria-label="LinkedIn Profile"
             >

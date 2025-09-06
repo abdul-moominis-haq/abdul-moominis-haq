@@ -262,7 +262,7 @@ const EnhancedHeroSection = () => {
             variants={containerVariants}
           >
             {[
-              { icon: Github, href: "https://github.com/ishaqabdulmoomin", label: "GitHub" },
+              { icon: Github, href: "https://github.com/abdul-moominis-haq", label: "GitHub" },
               { icon: Linkedin, href: "https://linkedin.com/in/abdul-moominis-haq", label: "LinkedIn" }
             ].map((social, index) => (
               <motion.a

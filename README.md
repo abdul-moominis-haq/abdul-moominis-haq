@@ -1,73 +1,65 @@
-# Welcome to your Lovable project
+<div id="header" align="center">
+  <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/>
+</div>
 
-## Project info
+<div id="badges" align="center">
+  <a href="https://www.linkedin.com/in/is-haq-abdul-moomin/">
+    <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+  </a>
+  <a href="mailto:abdulmoominishaq21@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-Email%20Me-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail Badge"/>
+  </a>
+</div>
 
-**URL**: https://lovable.dev/projects/e957c32e-dfc1-4726-8aa2-9714d4d38a64
+<h1>
+  Hi there! 
+  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px"/>
+</h1>
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+### :man_technologist: About Me:
 
-**Use Lovable**
+I'm a passionate Software Engineer and currently pursuing a degree in Computer Science and Engineering at the **University of Mines and Technology (UMaT)**, Tarkwa, Ghana.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e957c32e-dfc1-4726-8aa2-9714d4d38a64) and start prompting.
+- :telescope: I specialize in developing and implementing innovative software solutions that drive business success.
+- :seedling: I have skills in frontend and backend development, always eager to learn new technologies and solve challenging problems.
+- :zap: In my free time, I explore **Graphic Deisgning using PhotoShop**, designing digital environments and assets. I also enjoy competitive problem-solving on platforms like **HackerRank**, sharpening my algorithmic thinking and coding skills.
+- :star: I am enthusiastic about contributing my expertise to organizations that value **innovation, teamwork**, and **continuous learning**.
 
-Changes made via Lovable will be committed automatically to this repo.
+- :mailbox: **How to reach me:** [![Gmail Badge](https://img.shields.io/badge/Gmail-Email%20Me-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abdulmoominishaq21@gmail.com)
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### :hammer_and_wrench: Languages and Tools:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+<div>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg" title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original.svg" title="Next.js" alt="Next.js" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL" alt="MySQL" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" alt="Git" width="40" height="40"/>&nbsp;
+</div>
 
-Follow these steps:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### :rocket: Projects and Contributions:
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **Project 1:** Description of a notable project (e.g., full-stack web app, backend API, etc.).
+- **Project 2:** Another project with details about the technologies you used.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+### :telephone_receiver: Contact Information:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Phone:** +233 249819285
+- **Email:** [abdulmoominishaq21@gmail.com](mailto:abdulmoominishaq21@gmail.com)
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Feel free to reach out if you'd like to collaborate or have any questions about my work!
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e957c32e-dfc1-4726-8aa2-9714d4d38a64) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

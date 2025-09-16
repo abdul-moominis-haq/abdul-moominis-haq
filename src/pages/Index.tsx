@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
-import EnhancedHeroSection from "@/components/EnhancedHeroSection";
+import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import InteractiveProjectShowcase from "@/components/InteractiveProjectShowcase";
@@ -88,7 +88,7 @@ const Index = () => {
       
       <div className="min-h-screen">
         <header>
-          <EnhancedHeroSection />
+          <HeroSection />
         </header>
         
         <main>

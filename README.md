@@ -20,7 +20,7 @@
 
 ### :man_technologist: About Me:
 
-I'm a passionate Software Engineer and currently pursuing a degree in Computer Science and Engineering at the **University of Mines and Technology (UMaT)**, Tarkwa, Ghana.
+I'm a passionate Software Engineer and a graduate Computer Scientist and Engineer at the **University of Mines and Technology (UMaT)**, Tarkwa, Ghana.
 
 - :telescope: I specialize in developing and implementing innovative software solutions that drive business success.
 - :seedling: I have skills in frontend and backend development, always eager to learn new technologies and solve challenging problems.

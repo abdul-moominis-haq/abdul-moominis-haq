@@ -16,7 +16,6 @@ import {
   AlertCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const MeetingScheduler = () => {
   const [formData, setFormData] = useState({
@@ -81,8 +80,10 @@ const MeetingScheduler = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('meeting-request', {
-        body: {
+      const response = await fetch('http://localhost:4000/api/meeting', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           company: formData.company,
@@ -91,11 +92,13 @@ const MeetingScheduler = () => {
           duration: formData.duration,
           agenda: formData.agenda,
           message: formData.message
-        }
+        })
       });
 
-      if (error) {
-        throw new Error(error.message);
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Failed to submit meeting request');
       }
 
       setIsSubmitted(true);

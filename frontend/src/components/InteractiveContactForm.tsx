@@ -16,7 +16,6 @@ import {
   Clock
 } from "lucide-react";
 import toast from "react-hot-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const InteractiveContactForm = () => {
   const [formData, setFormData] = useState({
@@ -71,8 +70,10 @@ const InteractiveContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('contact-inquiry', {
-        body: {
+      const response = await fetch('http://localhost:4000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           company: formData.company,
@@ -80,11 +81,13 @@ const InteractiveContactForm = () => {
           budget: formData.budget,
           timeline: formData.timeline,
           message: formData.message
-        }
+        })
       });
 
-      if (error) {
-        throw new Error(error.message);
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Failed to send message');
       }
 
       setIsSubmitted(true);

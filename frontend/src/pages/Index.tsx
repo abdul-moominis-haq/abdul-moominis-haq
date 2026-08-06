@@ -27,7 +27,6 @@ const Index = () => {
       "Full-Stack Development",
       "React",
       "Node.js",
-      "Supabase",
       "SQL",
       "AgriTech",
       "Health AI",
@@ -44,8 +43,8 @@ const Index = () => {
     <>
       <Helmet>
         <title>IS-HAQ ABDUL-MOOMIN</title>
-        <meta name="description" content="Experienced software engineer specializing in AI, full-stack development, and innovative solutions. Expert in React, Supabase, AgriTech, Health AI, and Finance technology." />
-        <meta name="keywords" content="software engineer, full-stack developer, AI engineer, React, Supabase, SQL, AgriTech, Health AI, Finance technology, web development" />
+        <meta name="description" content="Experienced software engineer specializing in AI, full-stack development, and innovative solutions. Expert in React, Node.js, AgriTech, Health AI, and Finance technology." />
+        <meta name="keywords" content="software engineer, full-stack developer, AI engineer, React, Node.js, SQL, AgriTech, Health AI, Finance technology, web development" />
         <meta name="author" content="IS-HAQ ABDUL-MOOMIN" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
@@ -66,7 +65,7 @@ const Index = () => {
         
         {/* Performance optimizations */}
         <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://mkhsnxxfvtilercbeaez.supabase.co" />
+        
         
         {/* Structured Data */}
         <script type="application/ld+json">

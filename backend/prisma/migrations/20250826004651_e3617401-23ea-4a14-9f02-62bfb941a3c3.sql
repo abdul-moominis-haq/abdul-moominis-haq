@@ -15,6 +15,16 @@ CREATE TABLE public.contact_inquiries (
     response_message TEXT
 );
 
+-- helper function for triggers to update `updated_at`
+CREATE OR REPLACE FUNCTION public.update_updated_at_column()
+RETURNS trigger AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
 -- Create meeting_requests table for scheduling system
 CREATE TABLE public.meeting_requests (
     id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,

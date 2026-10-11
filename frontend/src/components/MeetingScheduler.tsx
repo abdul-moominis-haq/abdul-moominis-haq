@@ -67,7 +67,7 @@ const MeetingScheduler = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleMeetingTypeSelect = (type: any) => {
+  const handleMeetingTypeSelect = (type: (typeof meetingTypes)[number]) => {
     setFormData(prev => ({
       ...prev,
       meetingType: type.name,
@@ -105,7 +105,7 @@ const MeetingScheduler = () => {
       setIsSubmitted(true);
       toast({
         title: "Meeting Request Sent!",
-        description: "You'll receive confirmation within 24 hours.",
+        description: "I'll review your request and follow up to confirm a time.",
       });
     } catch (error) {
       console.error("Meeting request error:", error);
@@ -140,9 +140,9 @@ const MeetingScheduler = () => {
           >
             <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
           </motion.div>
-          <h3 className="text-2xl font-bold mb-4">Meeting Request Submitted! 🎉</h3>
+          <h3 className="text-2xl font-bold mb-4">Meeting request submitted.</h3>
           <p className="text-muted-foreground mb-6">
-            Thank you for requesting a meeting! I'll review your request and respond within 24 hours with confirmation or alternative time slots.
+            Thank you for requesting a meeting. I'll review your request and follow up to confirm a time or suggest an alternative.
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
             <Clock className="w-4 h-4" />

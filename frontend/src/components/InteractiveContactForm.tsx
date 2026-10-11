@@ -92,7 +92,7 @@ const InteractiveContactForm = () => {
       }
 
       setIsSubmitted(true);
-      toast.success("Message sent! I'll get back to you within 24 hours 🚀");
+      toast.success("Your message has been sent.");
     } catch (error) {
       console.error("Contact form error:", error);
       toast.error("Failed to send message. Please try again.");
@@ -140,13 +140,13 @@ const InteractiveContactForm = () => {
               >
                 <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
               </motion.div>
-              <h2 className="text-3xl font-bold mb-4">Message Received! 🎉</h2>
+              <h2 className="text-3xl font-bold mb-4">Message received.</h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Thank you for reaching out! I've received your message and will respond within 24 hours.
+                Thank you for reaching out. Your message has been received.
               </p>
               <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                 <Clock className="w-4 h-4" />
-                Expected response time: Within 24 hours
+                I’ll be in touch to follow up.
               </div>
               <Button
                 onClick={() => {

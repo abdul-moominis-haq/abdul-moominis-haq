@@ -1,0 +1,186 @@
+{
+  "title": "Choose the portfolio's visual world",
+  "question": "The roll assigned Safelight Contact Sheet. Choose it, an alternate, the familiar category standard, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Safelight Contact Sheet",
+      "kicker": "THE ROLL",
+      "lineage": "Black-and-white photographic contact sheets and the amber-lit printing darkroom",
+      "thesis": "Let each project emerge from a deliberate, readable working sheet.",
+      "palette": ["#f0d7a2", "#1c1a18", "#817d75", "#fff9ec"],
+      "materials": ["amber paper", "silver-grain ink", "enamel-white registration marks"],
+      "viewport": "An amber field sheet opens on SmartAgri as one developed project record, with the next work visible below.",
+      "case": "Path: scan the project sheet, open a project record, then move through experience, study, and contact. Signature: a reversible, keyboard-accessible exposure strip selects a project without concealing its title or details. Reach: the same numbered record grammar carries across projects, work history, and mobile layouts.",
+      "risk": "The darkroom metaphor can obscure the work; keep project names, roles, and descriptions at full contrast and make every interaction reversible.",
+      "raised": [
+        {
+          "from": "Alphabet Storm",
+          "raise": "Project records visibly connect the stated problem, approach, and listed technologies without animating or rewriting their factual content."
+        },
+        {
+          "from": "Dungeon Tape J-card",
+          "raise": "Give each project one focused editorial field instead of flattening the work into a grid of interchangeable cards."
+        }
+      ],
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "name and navigation", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "featured project record", "x": 0, "y": 1, "w": 7, "h": 6, "accent": true},
+          {"label": "project index and metadata", "x": 8, "y": 1, "w": 4, "h": 6},
+          {"label": "next project strip", "x": 0, "y": 8, "w": 12, "h": 2}
+        ]
+      }
+    },
+    {
+      "id": "grounded-pick",
+      "label": "Field Journal",
+      "kicker": "IMPECCABLE'S PICK",
+      "lineage": "Field notebooks and West African science-reporting broadsheets",
+      "thesis": "Read the work as a sequence of grounded engineering field notes.",
+      "palette": ["#f3efe3", "#22251f", "#c85b35", "#69734c"],
+      "materials": ["uncoated paper", "graphite", "field-label ink"],
+      "viewport": "A dated field-note masthead introduces the SmartAgri entry, its role, technologies, and the next project in sequence.",
+      "case": "Path: browse the field index, read a project note, then continue to experience and contact. Signature: a pinned index number tracks the selected note and remains available on narrow screens. Reach: projects, experience, and study share one editorial record system.",
+      "risk": "Field-report styling is familiar editorial territory; the work must lead rather than letting the notebook props take over.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "journal masthead and navigation", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "featured project note", "x": 0, "y": 1, "w": 8, "h": 6, "accent": true},
+          {"label": "field index", "x": 9, "y": 1, "w": 3, "h": 7},
+          {"label": "next note and context", "x": 0, "y": 8, "w": 8, "h": 2}
+        ]
+      }
+    },
+    {
+      "id": "challenger-neon",
+      "label": "Hand-Bent Neon Circuit",
+      "verdict": "competitive",
+      "lineage": "Hand-bent gas-discharge signage and continuous glass-tube circuits",
+      "thesis": "Trace the projects as connected engineering decisions, not a bag of technologies.",
+      "palette": ["#101216", "#e9edf2", "#507dff", "#f07856"],
+      "materials": ["dark glass", "cobalt light", "warm electrode marks"],
+      "viewport": "A connected project path leads into SmartAgri's real description, team role, and technologies.",
+      "case": "The circuit makes engineering and IoT immediately legible, but the neon-sign metaphor is less specific to this portfolio than the selected darkroom's deliberate project sequence.",
+      "risk": "A familiar tech-circuit motif could overpower the actual project evidence.",
+      "hero": "https://impeccable.style/worlds/cards/magnetism-electricity-plasma-hand-bent-neon-circuit-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/magnetism-electricity-plasma-hand-bent-neon-circuit.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "circuit name and navigation", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "connected project path", "x": 0, "y": 2, "w": 3, "h": 6, "accent": true},
+          {"label": "selected project detail", "x": 4, "y": 1, "w": 8, "h": 7},
+          {"label": "next connected project", "x": 0, "y": 9, "w": 12, "h": 1}
+        ]
+      }
+    },
+    {
+      "id": "challenger-teletext",
+      "label": "Teletext Service",
+      "verdict": "competitive",
+      "lineage": "Broadcast teletext indexes and fixed character-cell grids",
+      "thesis": "Navigate the portfolio as a numbered, always-legible index of work.",
+      "palette": ["#080808", "#fff04a", "#39cf74", "#f0f0ee"],
+      "materials": ["phosphor-black ground", "flat mosaic blocks", "monospaced type"],
+      "viewport": "A broadcast-style project index gives SmartAgri a numbered entry and opens its full description in a stable reading area.",
+      "case": "The page-number grammar makes navigation and project order unusually clear, while the broadcast idiom is less personally grounded than the assigned direction.",
+      "risk": "A rigid grid and nostalgia can make long project descriptions cramped or inaccessible.",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-teletext-weather-mosaic-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/digital-design-canon-teletext-weather-mosaic.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "service title and navigation", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "numbered project index", "x": 0, "y": 2, "w": 4, "h": 7, "accent": true},
+          {"label": "selected project text", "x": 5, "y": 2, "w": 7, "h": 7},
+          {"label": "page controls", "x": 0, "y": 9, "w": 12, "h": 1}
+        ]
+      }
+    },
+    {
+      "id": "challenger-type-specimen",
+      "label": "Variable Type Specimen",
+      "verdict": "competitive",
+      "lineage": "Printed type-foundry specimens and variable-font proof sheets",
+      "thesis": "Make engineering identity visible through a precise, changing typographic specimen.",
+      "palette": ["#faf9f5", "#171717", "#b34f37"],
+      "materials": ["proof paper", "printer's ink", "foundry accent"],
+      "viewport": "An oversized typographic name shares the opening with a clear project index and the SmartAgri record.",
+      "case": "The specimen celebrates typographic craft and gives the developer a memorable signature, but it places type ahead of the work visitors came to explore.",
+      "risk": "A variable-font control has no portfolio value unless it remains subtle and accessible.",
+      "hero": "https://impeccable.style/worlds/cards/variable-font-specimen-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/variable-font-specimen.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "name and navigation", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "typographic name specimen", "x": 0, "y": 1, "w": 6, "h": 4, "accent": true},
+          {"label": "featured project entry", "x": 7, "y": 1, "w": 5, "h": 7},
+          {"label": "project index", "x": 0, "y": 6, "w": 6, "h": 3}
+        ]
+      }
+    },
+    {
+      "id": "challenger-alphabet-storm",
+      "label": "Alphabet Storm",
+      "verdict": "declined",
+      "lineage": "Surrealist word-landscapes and animated letterforms",
+      "thesis": "Let project language transform into a navigable field of ideas.",
+      "palette": ["#f8f7f2", "#161616", "#b7b7b3"],
+      "materials": ["paper", "storm-letter ink", "silver accent"],
+      "case": "Kept: make a project's problem and approach read as a connected sequence; reject animated text that could compromise factual clarity.",
+      "kept": "Semantic connections between a project's problem, approach, and named technologies.",
+      "risk": "Transformed words can be difficult to scan and can change the meaning of factual copy.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-alphabet-storm-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-alphabet-storm.webp"
+    },
+    {
+      "id": "challenger-dungeon-jcard",
+      "label": "Dungeon Tape J-card",
+      "verdict": "declined",
+      "lineage": "Hand-drawn cassette inserts and photocopied tracklists",
+      "thesis": "Give every project the intimacy of one carefully made, fold-out record.",
+      "palette": ["#eee9dc", "#24211e", "#aaa59b"],
+      "materials": ["photocopied card", "crosshatched ink", "numbered spine"],
+      "case": "Kept: each project deserves its own focused reading field, not a row of interchangeable cards.",
+      "kept": "A project-first focus with a clear, persistent index.",
+      "risk": "A cassette sleeve is an unfamiliar personal artifact for the portfolio's professional audience.",
+      "hero": "https://impeccable.style/worlds/cards/posters-covers-sleeves-dungeon-tape-jcard-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/posters-covers-sleeves-dungeon-tape-jcard.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "code"
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A polished, familiar developer portfolio with conventional page structure.",
+    "palette": ["#ffffff", "#171717", "#2563eb"],
+    "materials": ["clean grid", "neutral surfaces"],
+    "viewport": "A clear name, concise introduction, featured projects, and expected portfolio navigation.",
+    "risk": "Familiar by design; it does not distinguish the work through a durable visual system.",
+    "wireframe": {
+      "cols": 12,
+      "rows": 10,
+      "regions": [
+        {"label": "name and navigation", "x": 0, "y": 0, "w": 12, "h": 1},
+        {"label": "introduction", "x": 0, "y": 1, "w": 12, "h": 3, "accent": true},
+        {"label": "featured projects", "x": 0, "y": 5, "w": 12, "h": 3},
+        {"label": "contact", "x": 0, "y": 9, "w": 12, "h": 1}
+      ]
+    }
+  },
+  "steer": true
+}

@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T18:25:48Z",
+  "title": "Design System: IS-HAQ ABDUL-MOOMIN Portfolio",
+  "extensions": {
+    "motion": [
+      {
+        "name": "record-develop",
+        "value": "260ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "A restrained reveal when the selected project record changes."
+      },
+      {
+        "name": "control-color",
+        "value": "140ms ease-out",
+        "purpose": "Color feedback on links and buttons."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-header",
+        "value": "900px"
+      },
+      {
+        "name": "single-column",
+        "value": "720px"
+      },
+      {
+        "name": "narrow-controls",
+        "value": "440px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "A ruled masthead with active-route treatment and a direct contact action.",
+      "html": "<header class=\"ds-header\"><a href=\"/\" class=\"ds-brand\">IS-HAQ <span>ABDUL-MOOMIN</span></a><nav aria-label=\"Main navigation\"><a href=\"/projects\">Projects</a><a href=\"/experience\">Experience</a><a href=\"/about\">About</a><a href=\"/skills\">Skills</a><a href=\"/contact\" class=\"ds-contact\">Get in touch</a></nav></header>",
+      "css": ".ds-header { display: flex; min-height: 4.75rem; align-items: center; justify-content: space-between; gap: 2rem; padding: 0 1.5rem; border-bottom: 1px solid hsl(var(--border)); color: hsl(var(--foreground)); background: hsl(var(--background)); font: 600 0.93rem/1.4 'Source Sans 3', sans-serif; } .ds-header .ds-brand { color: hsl(var(--foreground)); font: 700 1.25rem/1.2 'Barlow Condensed', sans-serif; letter-spacing: 0.025em; text-decoration: none; } .ds-header .ds-brand span { color: hsl(var(--primary)); } .ds-header nav { display: flex; align-items: center; gap: 1.5rem; } .ds-header nav a { color: inherit; text-decoration: none; } .ds-header nav a:hover, .ds-header nav a[aria-current='page'] { color: hsl(var(--primary)); } .ds-header nav .ds-contact { padding: 0.55rem 0.9rem; border: 1px solid hsl(var(--primary)); } .ds-header nav .ds-contact:hover { color: hsl(var(--primary-foreground)); background: hsl(var(--primary)); } .ds-header a:focus-visible { outline: 3px solid hsl(var(--primary)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A square amber action used for the portfolio's primary next step.",
+      "html": "<button class=\"ds-action\">Download CV <svg aria-hidden=\"true\" viewBox=\"0 0 16 16\"><path d=\"M8 2v9m-3-3 3 3 3-3M3 14h10\" /></svg></button>",
+      "css": ".ds-action { display: inline-flex; min-height: 2.8rem; align-items: center; justify-content: center; gap: 0.65rem; padding: 0.55rem 1rem; border: 1px solid hsl(var(--primary)); border-radius: 0; color: hsl(var(--primary-foreground)); background: hsl(var(--primary)); font: 700 1rem/1.4 'Source Sans 3', sans-serif; cursor: pointer; transition: background-color 140ms ease-out, color 140ms ease-out; } .ds-action svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; } .ds-action:hover { background: hsl(var(--primary-dark)); } .ds-action:focus-visible { outline: 3px solid hsl(var(--primary)); outline-offset: 3px; } .ds-action:active { background: hsl(var(--primary-dark)); }"
+    },
+    {
+      "name": "Contact Sheet Record",
+      "kind": "custom",
+      "refersTo": "project-record",
+      "description": "The selected project sits on a broad amber field beside its compact index.",
+      "html": "<article class=\"ds-record\"><span class=\"ds-meta\">2025 / AI / IoT</span><h2>SmartAgri – Smart Farming Management System</h2><p class=\"ds-role\">Role · Team Lead</p><p>Digital agriculture platform using AI, IoT, and real-time data to support farmers.</p></article>",
+      "css": ".ds-record { padding: clamp(1.5rem, 4vw, 3.75rem); border: 1px solid hsl(var(--border)); color: hsl(var(--foreground)); background: hsl(var(--safelight)); } .ds-record .ds-meta { display: block; padding-bottom: 0.85rem; border-bottom: 1px solid hsl(var(--border)); color: hsl(var(--silver)); font: 700 0.76rem/1.4 'Source Sans 3', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; } .ds-record h2 { max-width: 15ch; margin: 1rem 0 0; font: 650 clamp(2.3rem, 4.8vw, 4.6rem)/0.98 'Barlow Condensed', sans-serif; letter-spacing: -0.025em; } .ds-record .ds-role { margin: 0.45rem 0; color: hsl(var(--silver)); font-weight: 700; } .ds-record p:last-child { max-width: 62ch; margin: 1.2rem 0 0; font: 400 1.0625rem/1.65 'Source Sans 3', sans-serif; }"
+    },
+    {
+      "name": "Project Selector Row",
+      "kind": "nav",
+      "refersTo": "project-record",
+      "description": "A numbered, reversible button selects a record without hiding its details.",
+      "html": "<button class=\"ds-index\" aria-pressed=\"true\"><span>01</span><strong>SmartAgri – Smart Farming Management System</strong><span>2025</span></button>",
+      "css": ".ds-index { display: grid; width: 100%; min-height: 3.7rem; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: 0.55rem; padding: 0.55rem 0.45rem; border: 0; border-bottom: 1px solid hsl(var(--border)); color: hsl(var(--foreground)); background: transparent; text-align: left; cursor: pointer; } .ds-index:hover, .ds-index[aria-pressed='true'] { color: hsl(var(--primary)); background: hsl(var(--paper)); } .ds-index span { color: hsl(var(--silver)); font-size: 0.78rem; font-variant-numeric: tabular-nums; } .ds-index strong { font-size: 0.92rem; font-weight: 600; line-height: 1.25; } .ds-index:focus-visible { outline: 3px solid hsl(var(--primary)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Technology Label",
+      "kind": "chip",
+      "refersTo": "project-record",
+      "description": "An underlined text label names a technology without pretending to be a filter.",
+      "html": "<span class=\"ds-tech\">Real-time Data</span>",
+      "css": ".ds-tech { display: inline-block; padding: 0.13rem 0; border-bottom: 1px solid hsl(var(--border)); color: hsl(var(--silver)); font: 400 0.86rem/1.5 'Source Sans 3', sans-serif; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "A light enamel field with a fine rule and a clear focus outline.",
+      "html": "<label class=\"ds-field\">Email address<input type=\"email\" placeholder=\"you@example.com\" /></label>",
+      "css": ".ds-field { display: grid; gap: 0.45rem; color: hsl(var(--foreground)); font: 700 1rem/1.4 'Source Sans 3', sans-serif; } .ds-field input { min-height: 3.2rem; padding: 0.65rem 0.8rem; border: 1px solid hsl(var(--border)); border-radius: var(--radius); color: hsl(var(--foreground)); background: hsl(var(--input)); font: 400 1rem/1.5 'Source Sans 3', sans-serif; } .ds-field input:focus-visible { outline: 3px solid hsl(var(--ring)); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Safelight Contact Sheet",
+    "overview": "The portfolio reads like a considered sheet of engineering records developed under an amber safelight. Warm paper, near-black ink, silver-gray annotations, and enamel-white fields make the work itself the subject; typographic scale and precise rules provide the structure rather than decorative darkroom props.\n\nUse the same material vocabulary across the portfolio's routes, while letting each section's real content determine its density. The light theme is the default; the dark theme translates the paper-and-ink palette into darkroom values without changing the site's clear hierarchy. Project names, roles, descriptions, technologies, and contact paths remain readable and factual.",
+    "keyCharacteristics": [
+      "Project evidence leads; the homepage opens on a selected project and a compact index.",
+      "Amber, paper, ink, and silver-gray establish a restrained print-room palette.",
+      "Condensed display type contrasts with a highly readable humanist sans-serif.",
+      "Fine rules, numbered records, and underlined technology labels organize information."
+    ],
+    "rules": [
+      {
+        "name": "The Legibility-First Rule",
+        "body": "The darkroom vocabulary is a structural aid, never a reason to reduce contrast or obscure project facts.",
+        "section": "colors"
+      },
+      {
+        "name": "The Work-Speaks Rule",
+        "body": "Use display type for identity and real work titles; keep utility labels small and subordinate.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled-Surface Rule",
+        "body": "Separate records with tonal fields and fine rules; do not add a shadow beneath a surface that already has a border.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lead the homepage with the selected project's real title, role, description, and technologies.",
+      "Do preserve the warm paper, safelight, ink, silver-gray, and enamel-white palette in both themes.",
+      "Do use fine rules, restrained labels, and numbered records to make the portfolio scannable.",
+      "Do keep controls keyboard-operable and use the shared visible focus treatment.",
+      "Do preserve factual project and career content and real contact destinations."
+    ],
+    "donts": [
+      "Don't invent project destinations, testimonials, outcomes, or metrics.",
+      "Don't turn the darkroom direction into decorative props, faux grain, or unreadable low-contrast text.",
+      "Don't use equal icon-and-copy cards as the page's primary structure.",
+      "Don't replace the project evidence with generic hero claims or progress meters.",
+      "Don't use pill-shaped technology tags, gradient text, or hard offset shadows."
+    ]
+  }
+}

@@ -16,7 +16,11 @@ if (!connectionString) {
   process.exit(1);
 }
 
-const client = new Client({ connectionString });
+const useSsl = /sslmode=require|neon.tech/.test(connectionString) || process.env.NODE_ENV === 'production';
+const clientConfig = { connectionString };
+if (useSsl) clientConfig.ssl = { rejectUnauthorized: false };
+
+const client = new Client(clientConfig);
 
 async function testConnection() {
   try {

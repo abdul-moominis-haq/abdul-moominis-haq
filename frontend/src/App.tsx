@@ -6,6 +6,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AboutPage from "./pages/About";
+import ExperiencePage from "./pages/Experience";
+import ProjectsPage from "./pages/Projects";
+import SkillsPage from "./pages/Skills";
+import MeetingPage from "./pages/Meeting";
+import ContactPage from "./pages/Contact";
+import NewsletterPage from "./pages/Newsletter";
+import HeroPage from "./pages/Hero";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +31,14 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/hero" element={<HeroPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/meeting" element={<MeetingPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/newsletter" element={<NewsletterPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

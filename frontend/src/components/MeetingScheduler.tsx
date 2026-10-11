@@ -80,7 +80,8 @@ const MeetingScheduler = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:4000/api/meeting', {
+      const base = import.meta.env.VITE_API_URL ?? 'http://localhost:4000';
+      const response = await fetch(`${base}/api/meeting`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

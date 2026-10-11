@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "NODE_ENV=development node src/server.js",
+    "dev": "node src/server.js",
+    "dev:debug": "NODE_ENV=development node --inspect src/server.js",
     "test-neon": "node scripts/test-neon-connection.js",
     "migrate": "node scripts/run-migrations.js"
   },

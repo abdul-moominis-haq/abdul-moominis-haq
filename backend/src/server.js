@@ -1,62 +1,36 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { query } from './db.js';
+import app from './app.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+const DEFAULT_PORT = Number(process.env.PORT) || 4000;
+const MAX_TRIES = 10;
 
-const app = express();
-const port = process.env.PORT || 4000;
+function startServer(port = DEFAULT_PORT, attemptsLeft = MAX_TRIES) {
+  const server = app.listen(port, () => {
+    console.log(`Backend listening on http://localhost:${port}`);
+  });
 
-app.use(cors());
-app.use(express.json());
+  server.on('error', (err) => {
+    if (err && err.code === 'EADDRINUSE') {
+      console.warn(`Port ${port} in use.`);
+      if (attemptsLeft > 1) {
+        const nextPort = port + 1;
+        console.log(`Trying port ${nextPort} (${attemptsLeft - 1} attempts left)...`);
+        setTimeout(() => startServer(nextPort, attemptsLeft - 1), 200);
+      } else {
+        console.error(`Unable to bind to a port after ${MAX_TRIES} attempts. Exiting.`);
+        process.exit(1);
+      }
+    } else {
+      console.error('Server error:', err);
+      process.exit(1);
+    }
+  });
 
-app.get('/health', (_req, res) => {
-  res.json({ ok: true, service: 'portfolio-backend' });
-});
+  process.on('SIGINT', () => {
+    server.close(() => {
+      console.log('Server closed.');
+      process.exit(0);
+    });
+  });
+}
 
-app.post('/api/contact', async (req, res) => {
-  try {
-    const { name, email, company, project, budget, timeline, message } = req.body;
-
-    const insertResult = await query(
-      `INSERT INTO public.contact_inquiries
-       (name, email, company, project, budget, timeline, message, status)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-       RETURNING id`,
-      [name, email, company ?? null, project ?? null, budget ?? null, timeline ?? null, message ?? null, 'new']
-    );
-
-    res.status(201).json({ success: true, inquiryId: insertResult.rows[0].id });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-app.post('/api/meeting', async (req, res) => {
-  try {
-    const { name, email, company, meeting_type, proposed_date, duration, agenda, message } = req.body;
-
-    const insertResult = await query(
-      `INSERT INTO public.meeting_requests
-       (name, email, company, meeting_type, proposed_date, duration, agenda, message, status)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-       RETURNING id`,
-      [name, email, company ?? null, meeting_type, proposed_date, duration, agenda ?? null, message ?? null, 'pending']
-    );
-
-    res.status(201).json({ success: true, meetingId: insertResult.rows[0].id });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Backend listening on http://localhost:${port}`);
-});
+startServer();

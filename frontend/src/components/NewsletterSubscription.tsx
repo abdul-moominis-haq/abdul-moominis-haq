@@ -17,12 +17,25 @@ const NewsletterSubscription = () => {
 
     setIsLoading(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubscribed(true);
-    setIsLoading(false);
-    toast.success("Welcome to the innovation journey! 🚀");
+    try {
+      const base = import.meta.env.VITE_API_URL ?? 'http://localhost:4000';
+      const res = await fetch(`${base}/api/newsletter`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Subscription failed');
+
+      setIsSubscribed(true);
+      toast.success("Welcome to the innovation journey! 🚀");
+    } catch (err) {
+      console.error('Subscription error', err);
+      toast.error('Failed to subscribe. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
     
     // Reset after animation
     setTimeout(() => {

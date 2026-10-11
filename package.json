@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "cd frontend && vite",
-    "dev:backend": "node backend/src/server.js",
-    "build": "cd frontend && vite build",
-    "build:dev": "cd frontend && vite build --mode development",
-    "lint": "cd frontend && eslint .",
-    "preview": "cd frontend && vite preview",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build": "npm --prefix frontend run build",
+    "build:dev": "npm --prefix frontend run build -- --mode development",
+    "lint": "npm --prefix frontend run lint",
+    "preview": "npm --prefix frontend run preview",
     "test:neon": "cd backend/scripts && node test-neon-connection.js"
   },
   "dependencies": {

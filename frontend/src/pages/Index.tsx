@@ -1,13 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import InteractiveProjectShowcase from "@/components/InteractiveProjectShowcase";
-import SkillsSection from "@/components/SkillsSection";
-import NewsletterSubscription from "@/components/NewsletterSubscription";
-import InteractiveContactForm from "@/components/InteractiveContactForm";
-import MeetingScheduler from "@/components/MeetingScheduler";
+import NavBar from "@/components/NavBar";
 
 const Index = () => {
   const structuredData = {
@@ -87,34 +81,31 @@ const Index = () => {
       
       <div className="min-h-screen">
         <header>
+          <NavBar />
           <HeroSection />
         </header>
-        
-        <main>
-          <AboutSection />
-          <ExperienceSection />
-          <InteractiveProjectShowcase />
-          <SkillsSection />
-          
-          <section id="meeting" className="py-20 bg-gradient-to-br from-muted/30 to-background">
-            <div className="container mx-auto px-6">
-              <MeetingScheduler />
+
+        <main className="container mx-auto px-6 py-12">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl font-semibold mb-4">Explore</h2>
+            <p className="text-muted-foreground mb-6">Browse the site's sections as separate pages:</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a href="/about" className="p-4 border rounded">About</a>
+              <a href="/experience" className="p-4 border rounded">Experience</a>
+              <a href="/projects" className="p-4 border rounded">Projects</a>
+              <a href="/skills" className="p-4 border rounded">Skills</a>
+              <a href="/meeting" className="p-4 border rounded">Schedule Meeting</a>
+              <a href="/contact" className="p-4 border rounded">Contact</a>
+              <a href="/newsletter" className="p-4 border rounded">Newsletter</a>
             </div>
-          </section>
-          
-          <NewsletterSubscription />
-          <InteractiveContactForm />
+          </div>
         </main>
-        
+
         {/* Footer */}
-        <footer className="bg-primary text-primary-foreground py-8">
+        <footer className="bg-primary text-primary-foreground py-8 mt-12">
           <div className="container mx-auto px-6 text-center">
-            <p className="text-sm">
-              © 2025 IS-HAQ ABDUL-MOOMIN. All rights reserved.
-            </p>
-            <p className="text-xs text-primary-foreground/70 mt-2">
-              Built with React, TypeScript, and Tailwind CSS
-            </p>
+            <p className="text-sm">© 2025 IS-HAQ ABDUL-MOOMIN. All rights reserved.</p>
           </div>
         </footer>
       </div>

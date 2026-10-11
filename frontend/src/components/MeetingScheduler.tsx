@@ -16,6 +16,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { apiUrl } from "@/lib/api";
 
 const MeetingScheduler = () => {
   const [formData, setFormData] = useState({
@@ -80,8 +81,7 @@ const MeetingScheduler = () => {
     setIsSubmitting(true);
 
     try {
-      const base = import.meta.env.VITE_API_URL ?? 'http://localhost:4000';
-      const response = await fetch(`${base}/api/meeting`, {
+      const response = await fetch(apiUrl("/api/meeting"), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

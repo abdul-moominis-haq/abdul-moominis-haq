@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { apiUrl } from "@/lib/api";
 
 const NewsletterSubscription = () => {
   const [email, setEmail] = useState("");
@@ -11,8 +12,7 @@ const NewsletterSubscription = () => {
     setIsLoading(true);
 
     try {
-      const base = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
-      const response = await fetch(`${base}/api/newsletter`, {
+      const response = await fetch(apiUrl("/api/newsletter"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

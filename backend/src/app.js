@@ -22,6 +22,10 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true, service: 'portfolio-backend' });
 });
 
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true, service: 'portfolio-backend' });
+});
+
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, company, project, budget, timeline, message } = req.body;

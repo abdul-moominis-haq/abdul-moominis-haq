@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { apiUrl } from "@/lib/api";
 import { 
   Send, 
   MessageCircle, 
@@ -70,8 +71,7 @@ const InteractiveContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const base = import.meta.env.VITE_API_URL ?? 'http://localhost:4000';
-      const response = await fetch(`${base}/api/contact`, {
+      const response = await fetch(apiUrl("/api/contact"), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

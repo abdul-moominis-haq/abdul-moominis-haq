@@ -20,7 +20,7 @@
 
 ### :man_technologist: About Me:
 
-I'm a passionate Software Engineer and a graduate Computer Scientist and Engineer at the **University of Mines and Technology (UMaT)**, Tarkwa, Ghana.
+I'm a passionate Software Engineer based in Accra, Ghana, and a graduate Computer Scientist and Engineer from the **University of Mines and Technology (UMaT)** in Tarkwa, Ghana.
 
 - :telescope: I specialize in developing and implementing innovative software solutions that drive business success.
 - :seedling: I have skills in frontend and backend development, always eager to learn new technologies and solve challenging problems.
@@ -62,4 +62,3 @@ I'm a passionate Software Engineer and a graduate Computer Scientist and Enginee
 ---
 
 Feel free to reach out if you'd like to collaborate or have any questions about my work!
-

@@ -13,7 +13,7 @@ const HeroSection = () => {
         <div className="portfolio-opening__masthead">
           <div>
             <h1 id="opening-title">IS-HAQ ABDUL-MOOMIN</h1>
-            <p className="portfolio-opening__location">Tarkwa, Ghana</p>
+            <p className="portfolio-opening__location">Accra, Ghana</p>
           </div>
           <p className="portfolio-opening__discipline">
             Software engineer

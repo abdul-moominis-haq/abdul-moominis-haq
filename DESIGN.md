@@ -180,7 +180,7 @@ The contact sheet and its project records use square corners, thin outlines, and
 - **Error / Disabled:** Preserve explicit error messaging; disabled submit controls use a wait cursor and reduced opacity.
 
 ### Navigation
-- **Style:** A single ink-colored masthead with compact links; the active route uses amber text and a bottom rule.
+- **Style:** A single ink-colored masthead with compact links, including a Home link to `/`; the active route uses amber text and a bottom rule.
 - **Hover / Active:** Amber text and a bottom rule; the contact action receives a thin amber border.
 - **Mobile:** The brand sits above a horizontally scrollable navigation row; at common phone widths, keep the theme control visible without scrolling.
 

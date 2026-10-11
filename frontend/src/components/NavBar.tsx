@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
+  { to: "/", label: "Home" },
   { to: "/projects", label: "Projects" },
   { to: "/experience", label: "Experience" },
   { to: "/about", label: "About" },
@@ -20,6 +21,7 @@ export default function NavBar() {
             <NavLink
               key={link.to}
               to={link.to}
+              end={link.to === "/"}
               className={({ isActive }) =>
                 `site-nav__link${isActive ? " is-active" : ""}`
               }

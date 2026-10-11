@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { portfolioProjects } from "@/data/portfolio";
+import ProjectDataNotice from "@/components/ProjectDataNotice";
+import ProjectMedia from "@/components/ProjectMedia";
+import { usePortfolioProjects } from "@/hooks/usePortfolioProjects";
 
 const HeroSection = () => {
+  const { projects, usingSavedProjects } = usePortfolioProjects();
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-  const selectedProject = portfolioProjects[selectedProjectIndex];
+  const selectedIndex = projects.length > 0 && selectedProjectIndex < projects.length
+    ? selectedProjectIndex
+    : 0;
+  const selectedProject = projects[selectedIndex];
 
   return (
     <section className="portfolio-opening" aria-labelledby="opening-title">
@@ -21,21 +27,22 @@ const HeroSection = () => {
           </p>
         </div>
 
+        {usingSavedProjects && <ProjectDataNotice />}
         <div className="contact-sheet">
           <nav className="project-index" aria-label="Select a featured project">
             <div className="project-index__heading">
               <span className="print-label">Contact sheet</span>
               <span className="print-label">
-                {String(portfolioProjects.length).padStart(2, "0")} records
+                {String(projects.length).padStart(2, "0")} records
               </span>
             </div>
             <ol>
-              {portfolioProjects.map((project, index) => (
-                <li key={project.slug}>
+              {projects.map((project, index) => (
+                <li key={project.id ?? project.slug}>
                   <button
                     type="button"
-                    className={`project-index__item${index === selectedProjectIndex ? " is-selected" : ""}`}
-                    aria-pressed={index === selectedProjectIndex}
+                    className={`project-index__item${index === selectedIndex ? " is-selected" : ""}`}
+                    aria-pressed={index === selectedIndex}
                     aria-label={`Show ${project.title}`}
                     onClick={() => setSelectedProjectIndex(index)}
                   >
@@ -53,30 +60,59 @@ const HeroSection = () => {
             </Link>
           </nav>
 
-          <article
-            className="featured-record"
-            aria-live="polite"
-            aria-atomic="true"
-            key={selectedProject.slug}
-          >
-            <div className="featured-record__registration">
-              <span>Selected work</span>
-              <span>{selectedProject.year} / {selectedProject.category}</span>
+          {selectedProject ? (
+            <article
+              className="featured-record"
+              aria-live="polite"
+              aria-atomic="true"
+              key={selectedProject.id ?? selectedProject.slug}
+            >
+              <div className="featured-record__registration">
+                <span>Selected work</span>
+                <span>
+                  {[selectedProject.year, selectedProject.category].filter(Boolean).join(" / ")}
+                </span>
+              </div>
+              <h2>{selectedProject.title}</h2>
+              {selectedProject.role && (
+                <p className="featured-record__role">Role · {selectedProject.role}</p>
+              )}
+              <p className="featured-record__description">{selectedProject.description}</p>
+              <ProjectMedia
+                className="project-media--featured"
+                mediaUrl={selectedProject.mediaUrl}
+                mediaType={selectedProject.mediaType}
+                title={selectedProject.title}
+              />
+              {!!selectedProject.technologies?.length && (
+                <div className="technology-line" aria-label="Project technologies">
+                  {selectedProject.technologies.map((technology) => (
+                    <span key={technology}>{technology}</span>
+                  ))}
+                </div>
+              )}
+              <div className="featured-record__links">
+                {selectedProject.githubUrl && (
+                  <a className="text-link" href={selectedProject.githubUrl} target="_blank" rel="noreferrer">
+                    GitHub repository <ArrowUpRight aria-hidden="true" size={16} />
+                  </a>
+                )}
+                {selectedProject.hostedUrl && (
+                  <a className="text-link" href={selectedProject.hostedUrl} target="_blank" rel="noreferrer">
+                    Open live project <ArrowUpRight aria-hidden="true" size={16} />
+                  </a>
+                )}
+                <Link className="text-link" to="/projects">
+                  Read the project index <ArrowUpRight aria-hidden="true" size={16} />
+                </Link>
+              </div>
+            </article>
+          ) : (
+            <div className="featured-record featured-record--empty">
+              <h2>No projects yet.</h2>
+              <p>Add a project from the project manager to feature your work here.</p>
             </div>
-            <h2>{selectedProject.title}</h2>
-            <p className="featured-record__role">Role · {selectedProject.role}</p>
-            <p className="featured-record__description">
-              {selectedProject.description}
-            </p>
-            <div className="technology-line" aria-label="Project technologies">
-              {selectedProject.technologies.map((technology) => (
-                <span key={technology}>{technology}</span>
-              ))}
-            </div>
-            <Link className="text-link" to="/projects">
-              Read the project index <ArrowUpRight aria-hidden="true" size={16} />
-            </Link>
-          </article>
+          )}
         </div>
 
         <div className="opening-actions">

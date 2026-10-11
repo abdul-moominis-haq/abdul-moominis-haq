@@ -1,11 +1,17 @@
 export type PortfolioProject = {
+  id?: string;
   slug: string;
-  year: string;
+  year?: string;
   title: string;
-  role: string;
+  role?: string;
   description: string;
-  technologies: string[];
-  category: string;
+  technologies?: string[];
+  category?: string;
+  mediaUrl?: string | null;
+  mediaPublicId?: string | null;
+  mediaType?: "image" | "video" | null;
+  githubUrl?: string | null;
+  hostedUrl?: string | null;
 };
 
 export const portfolioProjects: PortfolioProject[] = [

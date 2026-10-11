@@ -7,6 +7,7 @@
     "dev": "node src/server.js",
     "dev:debug": "NODE_ENV=development node --inspect src/server.js",
     "test-neon": "node scripts/test-neon-connection.js",
+    "test:projects": "node --test test/projects.test.js",
     "migrate": "node scripts/run-migrations.js"
   },
   "dependencies": {

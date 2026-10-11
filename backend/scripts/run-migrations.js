@@ -12,6 +12,9 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 const MIGRATIONS_DIR = path.resolve(__dirname, '../prisma/migrations');
 
 const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  throw new Error('DATABASE_URL is required to run database migrations');
+}
 const poolConfig = { connectionString };
 if (/sslmode=require|neon.tech/.test(connectionString) || process.env.NODE_ENV === 'production') {
   poolConfig.ssl = { rejectUnauthorized: false };

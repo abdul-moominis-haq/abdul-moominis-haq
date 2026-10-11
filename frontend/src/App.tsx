@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +16,8 @@ import MeetingPage from "./pages/Meeting";
 import ContactPage from "./pages/Contact";
 import NewsletterPage from "./pages/Newsletter";
 import HeroPage from "./pages/Hero";
+
+const ProjectManager = lazy(() => import("./pages/ProjectManager"));
 
 const queryClient = new QueryClient();
 
@@ -43,6 +46,14 @@ const App = () => (
               <Route path="/newsletter" element={<NewsletterPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
+            <Route
+              path="/admin/projects"
+              element={
+                <Suspense fallback={<p className="project-manager__message" role="status">Opening project manager…</p>}>
+                  <ProjectManager />
+                </Suspense>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

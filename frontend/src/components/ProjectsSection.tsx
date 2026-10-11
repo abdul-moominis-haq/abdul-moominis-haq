@@ -1,33 +1,56 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { portfolioProjects } from "@/data/portfolio";
+import ProjectDataNotice from "@/components/ProjectDataNotice";
+import ProjectMedia from "@/components/ProjectMedia";
+import { usePortfolioProjects } from "@/hooks/usePortfolioProjects";
 
-const ProjectsSection = () => (
-  <section id="projects" className="print-section project-archive">
+const ProjectsSection = () => {
+  const { projects, usingSavedProjects } = usePortfolioProjects();
+
+  return (
+    <section id="projects" className="print-section project-archive">
     <div className="section-inner">
       <div className="section-heading">
         <h2>Work, indexed.</h2>
         <p>Projects across agriculture, finance, education, and the web.</p>
       </div>
 
+      {usingSavedProjects && <ProjectDataNotice />}
       <ol className="project-archive__list">
-        {portfolioProjects.map((project, index) => (
-          <li className="project-archive__record" key={project.slug}>
+        {projects.map((project, index) => (
+          <li className="project-archive__record" key={project.id ?? project.slug}>
             <span className="project-archive__number" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
             </span>
             <div className="project-archive__body">
               <h3>{project.title}</h3>
-              <p className="print-label">
-                {project.year} · {project.category}
-              </p>
+              {(project.year || project.category) && (
+                <p className="print-label">
+                  {[project.year, project.category].filter(Boolean).join(" · ")}
+                </p>
+              )}
               <p className="project-archive__description">{project.description}</p>
-              <p className="project-archive__role">Role · {project.role}</p>
-              <ul className="technology-line" aria-label="Technologies used">
-                {project.technologies.map((technology) => (
-                  <li key={technology}>{technology}</li>
-                ))}
-              </ul>
+              {project.role && <p className="project-archive__role">Role · {project.role}</p>}
+              <ProjectMedia mediaUrl={project.mediaUrl} mediaType={project.mediaType} title={project.title} />
+              {!!project.technologies?.length && (
+                <ul className="technology-line" aria-label="Technologies used">
+                  {project.technologies.map((technology) => (
+                    <li key={technology}>{technology}</li>
+                  ))}
+                </ul>
+              )}
+              <div className="project-archive__links">
+                {project.githubUrl && (
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                    GitHub repository <ArrowUpRight aria-hidden="true" size={16} />
+                  </a>
+                )}
+                {project.hostedUrl && (
+                  <a href={project.hostedUrl} target="_blank" rel="noreferrer">
+                    Open live project <ArrowUpRight aria-hidden="true" size={16} />
+                  </a>
+                )}
+              </div>
             </div>
           </li>
         ))}
@@ -47,7 +70,8 @@ const ProjectsSection = () => (
         Discuss a project <ArrowUpRight aria-hidden="true" size={16} />
       </Link>
     </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default ProjectsSection;

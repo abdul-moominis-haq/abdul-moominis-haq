@@ -25,7 +25,7 @@ OWN-WORLD: Build one amber-safelight field from warm amber paper, near-black ink
 
 STORY: Visitors meet the developer through the SmartAgri record, scan the full project index, then move through experience, study, skills, and contact. A reversible, keyboard-accessible project selector may change the selected record without hiding its title or details.
 
-FIRST VIEWPORT: A persistent name/navigation line frames a large SmartAgri project record on the left, with its role, real description, and technologies visible at full reading size. A compact project contact sheet on the right exposes all project titles and the selected state. The next record begins below the fold; no invented imagery or metrics.
+FIRST VIEWPORT: A persistent name/navigation line frames a compact project contact sheet on the left, exposing all project titles and the selected state. The larger SmartAgri project record sits on the right, with its role, real description, and technologies visible at full reading size. The next content begins below the fold; no invented imagery or metrics.
 
 FORM: The assigned darkroom contact-sheet direction, fifth in the grounded list and selected in the direction round (seed key 537a24f0). The user chose the code-led build path; there is no approved comp or comp-led fidelity requirement.
 

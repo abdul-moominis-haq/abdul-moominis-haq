@@ -139,7 +139,7 @@ The palette pairs warm amber paper and safelight fields with dark ink, quiet sil
 
 ## Layout
 
-Center the primary reading surfaces in a 1160px column, with the shared header allowed up to 1360px. The homepage opens with a two-column contact sheet: a larger featured record beside a compact project index. Subsequent content uses ruled editorial records rather than a repeated grid of equal cards. Keep headings and their supporting content close, with more space separating sections than elements within a record.
+Center the primary reading surfaces in a 1160px column, with the shared header allowed up to 1360px. The homepage opens with a two-column contact sheet: the compact project index is on the left, and the larger selected project record is on the right. Subsequent content uses ruled editorial records rather than a repeated grid of equal cards. Keep headings and their supporting content close, with more space separating sections than elements within a record.
 
 The main section rhythm is `clamp(3.75rem, 8vw, 7rem)` with 1–1.5rem page gutters. At 900px the featured sheet tightens; at 720px it becomes a single-column reading flow and the navigation becomes horizontally scrollable; at 440px record labels and form controls use narrower layouts. Preserve the selected project details and keyboard-accessible controls at every width.
 
@@ -185,7 +185,7 @@ The contact sheet and its project records use square corners, thin outlines, and
 - **Mobile:** The brand sits above a horizontally scrollable navigation row; at common phone widths, keep the theme control visible without scrolling.
 
 ### Project Contact Sheet
-The selector is a numbered list of real projects. Each full-width button updates the featured title, year, role, description, and technologies in place. Use `aria-pressed` for selection and retain a visible selected treatment; never replace the record with a fabricated link or metric.
+The selector is a numbered list of real projects on the left side of the contact sheet. The selected project's title, year, role, description, and technologies appear in the larger panel to its right. Each full-width button updates the record in place. Use `aria-pressed` for selection and retain a visible selected treatment; never replace the record with a fabricated link or metric.
 
 ## Do's and Don'ts
 

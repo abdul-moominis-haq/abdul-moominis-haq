@@ -22,31 +22,6 @@ const HeroSection = () => {
         </div>
 
         <div className="contact-sheet">
-          <article
-            className="featured-record"
-            aria-live="polite"
-            aria-atomic="true"
-            key={selectedProject.slug}
-          >
-            <div className="featured-record__registration">
-              <span>Selected work</span>
-              <span>{selectedProject.year} / {selectedProject.category}</span>
-            </div>
-            <h2>{selectedProject.title}</h2>
-            <p className="featured-record__role">Role · {selectedProject.role}</p>
-            <p className="featured-record__description">
-              {selectedProject.description}
-            </p>
-            <div className="technology-line" aria-label="Project technologies">
-              {selectedProject.technologies.map((technology) => (
-                <span key={technology}>{technology}</span>
-              ))}
-            </div>
-            <Link className="text-link" to="/projects">
-              Read the project index <ArrowUpRight aria-hidden="true" size={16} />
-            </Link>
-          </article>
-
           <nav className="project-index" aria-label="Select a featured project">
             <div className="project-index__heading">
               <span className="print-label">Contact sheet</span>
@@ -77,6 +52,31 @@ const HeroSection = () => {
               Open all records <ArrowUpRight aria-hidden="true" size={16} />
             </Link>
           </nav>
+
+          <article
+            className="featured-record"
+            aria-live="polite"
+            aria-atomic="true"
+            key={selectedProject.slug}
+          >
+            <div className="featured-record__registration">
+              <span>Selected work</span>
+              <span>{selectedProject.year} / {selectedProject.category}</span>
+            </div>
+            <h2>{selectedProject.title}</h2>
+            <p className="featured-record__role">Role · {selectedProject.role}</p>
+            <p className="featured-record__description">
+              {selectedProject.description}
+            </p>
+            <div className="technology-line" aria-label="Project technologies">
+              {selectedProject.technologies.map((technology) => (
+                <span key={technology}>{technology}</span>
+              ))}
+            </div>
+            <Link className="text-link" to="/projects">
+              Read the project index <ArrowUpRight aria-hidden="true" size={16} />
+            </Link>
+          </article>
         </div>
 
         <div className="opening-actions">

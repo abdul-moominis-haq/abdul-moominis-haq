@@ -309,7 +309,7 @@
 
 .contact-sheet {
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.85fr);
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.65fr);
   border: 1px solid hsl(var(--border));
   background: hsl(var(--enamel));
 }
@@ -390,6 +390,7 @@
 .project-index {
   min-width: 0;
   padding: 1.25rem 1.35rem;
+  border-right: 1px solid hsl(var(--border));
   align-self: stretch;
 }
 
@@ -1097,7 +1098,7 @@
   }
 
   .contact-sheet {
-    grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+    grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.2fr);
   }
 }
 
@@ -1169,7 +1170,8 @@
 
   .project-index {
     padding: 1rem 1.2rem 1.25rem;
-    border-top: 1px solid hsl(var(--border));
+    border-right: 0;
+    border-bottom: 1px solid hsl(var(--border));
   }
 
   .opening-actions {

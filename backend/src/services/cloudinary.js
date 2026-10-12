@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 
 const PROJECT_MEDIA_FOLDER = 'portfolio-projects';
+const CONTENT_SECTIONS = new Set(['home', 'about', 'experience', 'skills']);
 
 export class CloudinaryConfigurationError extends Error {
   constructor() {
@@ -51,6 +52,31 @@ export function createProjectUploadSignature(resourceType) {
   };
 }
 
+export function createContentUploadSignature(section, resourceType) {
+  if (!CONTENT_SECTIONS.has(section)) {
+    throw new TypeError('Choose a valid portfolio section');
+  }
+  if (!['image', 'video', 'raw'].includes(resourceType)) {
+    throw new TypeError('Portfolio files must be an image, video, or document');
+  }
+
+  const { cloudName, apiKey, apiSecret } = getCloudinaryConfig();
+  const folder = `portfolio-content/${section}`;
+  const params = {
+    folder,
+    public_id: `${folder}/${randomUUID()}`,
+    timestamp: Math.floor(Date.now() / 1000),
+  };
+
+  return {
+    cloudName,
+    apiKey,
+    resourceType,
+    ...params,
+    signature: signParameters(params, apiSecret),
+  };
+}
+
 function validateProjectMedia({ mediaUrl, publicId, resourceType }) {
   if (
     typeof mediaUrl !== 'string' ||
@@ -77,13 +103,40 @@ export function validateProjectMediaDetails(media) {
   return true;
 }
 
-export async function deleteProjectMedia(media) {
-  const { mediaUrl, resourceType } = media;
-  const resolvedPublicId = media.publicId ?? media.mediaPublicId;
-  validateProjectMedia({ mediaUrl, publicId: resolvedPublicId, resourceType });
+function validateContentMedia({ section, mediaUrl, publicId, resourceType }) {
+  if (!CONTENT_SECTIONS.has(section)) {
+    throw new TypeError('Choose a valid portfolio section');
+  }
+  const folder = `portfolio-content/${section}`;
+  if (
+    typeof mediaUrl !== 'string' ||
+    typeof publicId !== 'string' ||
+    !publicId.startsWith(`${folder}/`) ||
+    !['image', 'video', 'raw'].includes(resourceType)
+  ) {
+    throw new TypeError('Portfolio file details are invalid');
+  }
+
+  const { cloudName } = getCloudinaryConfig();
+  const url = new URL(mediaUrl);
+  if (
+    url.protocol !== 'https:' ||
+    url.hostname !== 'res.cloudinary.com' ||
+    !url.pathname.startsWith(`/${cloudName}/${resourceType}/upload/`)
+  ) {
+    throw new TypeError('Portfolio files must be served from the configured Cloudinary account');
+  }
+}
+
+export function validateContentMediaDetails(media) {
+  validateContentMedia(media);
+  return true;
+}
+
+async function destroyMedia(publicId, resourceType) {
   const { cloudName, apiKey, apiSecret } = getCloudinaryConfig();
   const timestamp = Math.floor(Date.now() / 1000);
-  const params = { public_id: resolvedPublicId, timestamp };
+  const params = { public_id: publicId, timestamp };
   const body = new URLSearchParams({
     ...params,
     api_key: apiKey,
@@ -100,11 +153,23 @@ export async function deleteProjectMedia(media) {
   );
 
   if (!response.ok) {
-    throw new Error(`Cloudinary returned HTTP ${response.status} while deleting project media`);
+    throw new Error(`Cloudinary returned HTTP ${response.status} while deleting media`);
   }
 
   const result = await response.json();
   if (result.result !== 'ok' && result.result !== 'not found') {
     throw new Error('Cloudinary did not confirm project media deletion');
   }
+}
+
+export async function deleteProjectMedia(media) {
+  const { mediaUrl, resourceType } = media;
+  const resolvedPublicId = media.publicId ?? media.mediaPublicId;
+  validateProjectMedia({ mediaUrl, publicId: resolvedPublicId, resourceType });
+  await destroyMedia(resolvedPublicId, resourceType);
+}
+
+export async function deleteContentMedia(media) {
+  validateContentMedia(media);
+  await destroyMedia(media.publicId, media.resourceType);
 }

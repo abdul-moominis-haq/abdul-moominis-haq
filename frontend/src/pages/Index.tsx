@@ -5,6 +5,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
+import PortfolioContentNotice from "@/components/PortfolioContentNotice";
 
 const Index = () => {
   const structuredData = {
@@ -58,6 +59,7 @@ const Index = () => {
       </Helmet>
 
       <main id="main" className="portfolio-home">
+        <PortfolioContentNotice />
         <HeroSection />
         <ProjectsSection />
         <ExperienceSection />

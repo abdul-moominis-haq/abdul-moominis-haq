@@ -9,6 +9,8 @@ import Newsletter from './models/newsletter.js';
 import AppModel from './models/appModel.js';
 import { sendConfirmationEmail } from './mailer.js';
 import projectsRouter from './routes/projects.js';
+import contentRouter from './routes/content.js';
+import neonAuthWebhookRouter from './routes/neonAuthWebhook.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,8 +19,10 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 const app = express();
 
 app.use(cors());
+app.use('/api/webhooks', neonAuthWebhookRouter);
 app.use(express.json());
 app.use('/api/projects', projectsRouter);
+app.use('/api/content', contentRouter);
 
 app.get('/health', (_req, res) => {
   res.json({ ok: true, service: 'portfolio-backend' });

@@ -18,6 +18,7 @@ import NewsletterPage from "./pages/Newsletter";
 import HeroPage from "./pages/Hero";
 
 const ProjectManager = lazy(() => import("./pages/ProjectManager"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,14 @@ const App = () => (
               <Route path="/newsletter" element={<NewsletterPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
+            <Route
+              path="/admin"
+              element={
+                <Suspense fallback={<p className="project-manager__message" role="status">Opening portfolio editor…</p>}>
+                  <AdminDashboard />
+                </Suspense>
+              }
+            />
             <Route
               path="/admin/projects"
               element={

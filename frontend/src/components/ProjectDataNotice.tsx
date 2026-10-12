@@ -1,7 +1,7 @@
 export default function ProjectDataNotice() {
   return (
     <p className="project-data-notice" role="status">
-      Live project updates are unavailable. Showing the saved project list for now.
+      Project records are temporarily unavailable. Try again later; sample projects are not shown.
     </p>
   );
 }

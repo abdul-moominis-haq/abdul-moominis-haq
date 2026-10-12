@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiUrl } from "@/lib/api";
-import { portfolioProjects, type PortfolioProject } from "@/data/portfolio";
+import type { PortfolioProject } from "@/data/portfolio";
 
 async function fetchPortfolioProjects(): Promise<PortfolioProject[]> {
   const response = await fetch(apiUrl("/api/projects"));
@@ -35,7 +35,7 @@ export function usePortfolioProjects() {
 
   return {
     ...query,
-    projects: query.data ?? portfolioProjects,
+    projects: query.data ?? [],
     usingSavedProjects: query.isError,
   };
 }

@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import ProjectDataNotice from "@/components/ProjectDataNotice";
 import ProjectMedia from "@/components/ProjectMedia";
+import PortfolioAssets from "@/components/PortfolioAssets";
+import { usePortfolioContent } from "@/hooks/usePortfolioContent";
 import { usePortfolioProjects } from "@/hooks/usePortfolioProjects";
 
 const HeroSection = () => {
   const { projects, usingSavedProjects } = usePortfolioProjects();
+  const { content } = usePortfolioContent();
+  const home = content.home;
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
   const selectedIndex = projects.length > 0 && selectedProjectIndex < projects.length
     ? selectedProjectIndex
@@ -18,12 +22,19 @@ const HeroSection = () => {
       <div className="portfolio-opening__inner">
         <div className="portfolio-opening__masthead">
           <div>
-            <h1 id="opening-title">IS-HAQ ABDUL-MOOMIN</h1>
-            <p className="portfolio-opening__location">Accra, Ghana</p>
+            <h1 id="opening-title">{home.name}</h1>
+            <p className="portfolio-opening__location">{home.location}</p>
+            {home.portraitUrl && (
+              <img
+                className="portfolio-opening__portrait"
+                src={home.portraitUrl}
+                alt={`${home.name} portrait`}
+              />
+            )}
           </div>
           <p className="portfolio-opening__discipline">
-            Software engineer
-            <span>Full-stack · AI · IoT</span>
+            {home.discipline}
+            <span>{home.specialties}</span>
           </p>
         </div>
 
@@ -110,19 +121,21 @@ const HeroSection = () => {
           ) : (
             <div className="featured-record featured-record--empty">
               <h2>No projects yet.</h2>
-              <p>Add a project from the project manager to feature your work here.</p>
+              <p>Publish a project from the private portfolio editor to feature your work here.</p>
             </div>
           )}
         </div>
 
         <div className="opening-actions">
-          <a
-            className="action-link action-link--primary"
-            href="/IS_HAQ_ABDUL_MOOMIN_S_CV.pdf"
-            download
-          >
-            Download CV <ArrowDown aria-hidden="true" size={16} />
-          </a>
+          {home.cvUrl && (
+            <a
+              className="action-link action-link--primary"
+              href={home.cvUrl}
+              download
+            >
+              Download CV <ArrowDown aria-hidden="true" size={16} />
+            </a>
+          )}
           <Link className="action-link" to="/contact">
             Start a conversation <ArrowUpRight aria-hidden="true" size={16} />
           </Link>
@@ -130,6 +143,12 @@ const HeroSection = () => {
             A portfolio of applied software work
           </span>
         </div>
+        <PortfolioAssets
+          assets={home.assets.filter(
+            (asset) => asset.mediaUrl !== home.cvUrl && asset.mediaUrl !== home.portraitUrl,
+          )}
+          section="Home"
+        />
       </div>
     </section>
   );

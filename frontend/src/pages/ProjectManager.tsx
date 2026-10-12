@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import { ArrowUpRight, ImagePlus, LogOut, Plus, Save, Trash2, Video, X } from "lucide-react";
 import type { PortfolioProject } from "@/data/portfolio";
 import ProjectMediaView from "@/components/ProjectMedia";
@@ -469,11 +470,17 @@ export default function ProjectManager() {
 
   return (
     <main className="project-manager">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <header className="project-manager__bar">
         <Link className="project-manager__brand" to="/">
           IS-HAQ ABDUL-MOOMIN
         </Link>
         <div className="project-manager__bar-actions">
+          <Link className="project-manager__text-button" to="/admin">
+            Portfolio editor
+          </Link>
           <Link className="project-manager__text-button" to="/projects">
             Public projects
           </Link>

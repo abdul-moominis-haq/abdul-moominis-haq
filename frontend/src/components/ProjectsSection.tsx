@@ -16,45 +16,53 @@ const ProjectsSection = () => {
       </div>
 
       {usingSavedProjects && <ProjectDataNotice />}
-      <ol className="project-archive__list">
-        {projects.map((project, index) => (
-          <li className="project-archive__record" key={project.id ?? project.slug}>
-            <span className="project-archive__number" aria-hidden="true">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <div className="project-archive__body">
-              <h3>{project.title}</h3>
-              {(project.year || project.category) && (
-                <p className="print-label">
-                  {[project.year, project.category].filter(Boolean).join(" · ")}
-                </p>
-              )}
-              <p className="project-archive__description">{project.description}</p>
-              {project.role && <p className="project-archive__role">Role · {project.role}</p>}
-              <ProjectMedia mediaUrl={project.mediaUrl} mediaType={project.mediaType} title={project.title} />
-              {!!project.technologies?.length && (
-                <ul className="technology-line" aria-label="Technologies used">
-                  {project.technologies.map((technology) => (
-                    <li key={technology}>{technology}</li>
-                  ))}
-                </ul>
-              )}
-              <div className="project-archive__links">
-                {project.githubUrl && (
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                    GitHub repository <ArrowUpRight aria-hidden="true" size={16} />
-                  </a>
+      {projects.length > 0 ? (
+        <ol className="project-archive__list">
+          {projects.map((project, index) => (
+            <li className="project-archive__record" key={project.id ?? project.slug}>
+              <span className="project-archive__number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className="project-archive__body">
+                <h3>{project.title}</h3>
+                {(project.year || project.category) && (
+                  <p className="print-label">
+                    {[project.year, project.category].filter(Boolean).join(" · ")}
+                  </p>
                 )}
-                {project.hostedUrl && (
-                  <a href={project.hostedUrl} target="_blank" rel="noreferrer">
-                    Open live project <ArrowUpRight aria-hidden="true" size={16} />
-                  </a>
+                <p className="project-archive__description">{project.description}</p>
+                {project.role && <p className="project-archive__role">Role · {project.role}</p>}
+                <ProjectMedia mediaUrl={project.mediaUrl} mediaType={project.mediaType} title={project.title} />
+                {!!project.technologies?.length && (
+                  <ul className="technology-line" aria-label="Technologies used">
+                    {project.technologies.map((technology) => (
+                      <li key={technology}>{technology}</li>
+                    ))}
+                  </ul>
                 )}
+                <div className="project-archive__links">
+                  {project.githubUrl && (
+                    <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                      GitHub repository <ArrowUpRight aria-hidden="true" size={16} />
+                    </a>
+                  )}
+                  {project.hostedUrl && (
+                    <a href={project.hostedUrl} target="_blank" rel="noreferrer">
+                      Open live project <ArrowUpRight aria-hidden="true" size={16} />
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
-      </ol>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p className="portfolio-section-empty">
+          {usingSavedProjects
+            ? "Project records are unavailable right now."
+            : "Projects will appear here when they are published."}
+        </p>
+      )}
 
       <p className="project-archive__github">
         <span>More code and contributions</span>

@@ -92,6 +92,8 @@ function signedSignupRequest({
   timestamp = Date.now(),
   eventType = 'user.before_create',
   corruptSignature = false,
+  eventData = { auth_provider: 'credential' },
+  name = 'Portfolio Admin',
 }) {
   const eventId = 'b2294441-3951-41e8-a755-e5327caa2e68';
   const rawBody = Buffer.from(JSON.stringify({
@@ -99,8 +101,8 @@ function signedSignupRequest({
     event_type: eventType,
     timestamp: new Date(timestamp).toISOString(),
     context: { endpoint_id: 'test-endpoint', project_name: 'Portfolio' },
-    user: { email, name: 'Portfolio Admin' },
-    event_data: { auth_provider: 'credential' },
+    user: { email, name },
+    event_data: eventData,
   }));
   const header = Buffer.from(JSON.stringify({
     alg: 'EdDSA',
@@ -271,6 +273,60 @@ test('public reads, admin authorization, and project CRUD endpoints', async () =
     eventType: 'user.created',
   });
   assert.equal(mismatchedEvent.status, 400);
+
+  const previousFetch = globalThis.fetch;
+  const previousResendKey = process.env.RESEND_API_KEY;
+  const previousFromEmail = process.env.FROM_EMAIL;
+  const deliveredEmails = [];
+  const deliveryIdempotencyKeys = [];
+  process.env.RESEND_API_KEY = 'test-resend-key';
+  process.env.FROM_EMAIL = 'Portfolio <hello@example.test>';
+  globalThis.fetch = async (input, options) => {
+    if (String(input) === 'https://api.resend.com/emails') {
+      deliveredEmails.push(JSON.parse(options.body));
+      deliveryIdempotencyKeys.push(options.headers['Idempotency-Key']);
+      return new Response(null, { status: 200 });
+    }
+    return previousFetch(input, options);
+  };
+  try {
+    const otpEmail = await signedSignupRequest({
+      email: 'admin@example.test',
+      eventType: 'send.otp',
+      name: '<script>Injected</script>',
+      eventData: {
+        otp_code: '123456',
+        otp_type: 'email-verification',
+        delivery_preference: 'email',
+        expires_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+      },
+    });
+    assert.equal(otpEmail.status, 204);
+    assert.equal(deliveredEmails.length, 1);
+    assert.equal(deliveryIdempotencyKeys[0], 'b2294441-3951-41e8-a755-e5327caa2e68');
+    assert.deepEqual(deliveredEmails[0].to, ['admin@example.test']);
+    assert.match(deliveredEmails[0].html, /123456/);
+    assert.doesNotMatch(deliveredEmails[0].html, /<script>Injected/);
+
+    const magicLinkEmail = await signedSignupRequest({
+      email: 'admin@example.test',
+      eventType: 'send.magic_link',
+      eventData: {
+        link_type: 'forget-password',
+        link_url: `${process.env.NEON_AUTH_BASE_URL}/verify?token=test&next=%2Fadmin`,
+        expires_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+      },
+    });
+    assert.equal(magicLinkEmail.status, 204);
+    assert.equal(deliveredEmails.length, 2);
+    assert.match(deliveredEmails[1].html, /&amp;next=/);
+  } finally {
+    globalThis.fetch = previousFetch;
+    if (previousResendKey === undefined) delete process.env.RESEND_API_KEY;
+    else process.env.RESEND_API_KEY = previousResendKey;
+    if (previousFromEmail === undefined) delete process.env.FROM_EMAIL;
+    else process.env.FROM_EMAIL = previousFromEmail;
+  }
 
   const publicContent = await apiRequest('/api/content');
   assert.equal(publicContent.status, 200);

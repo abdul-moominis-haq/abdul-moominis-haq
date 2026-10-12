@@ -5,6 +5,11 @@ import { Helmet } from "react-helmet";
 import { ArrowUpRight, ImagePlus, LogOut, Plus, Save, Trash2, Video, X } from "lucide-react";
 import type { PortfolioProject } from "@/data/portfolio";
 import ProjectMediaView from "@/components/ProjectMedia";
+import {
+  NeonAdminAccountSettings,
+  NeonAdminAuthPanel,
+  type AdminAuthIdentity,
+} from "@/components/NeonAdminAuth";
 import { neonAuthClient } from "@/lib/neonAuth";
 import {
   ProjectAdminApiError,
@@ -89,11 +94,9 @@ export default function ProjectManager() {
   const queryClient = useQueryClient();
   const fileInput = useRef<HTMLInputElement>(null);
   const [loadingSession, setLoadingSession] = useState(true);
-  const [savingAuth, setSavingAuth] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [authMode, setAuthMode] = useState<"sign-in" | "sign-up">("sign-in");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [emailVerified, setEmailVerified] = useState(false);
   const [projects, setProjects] = useState<ProjectRecord[]>([]);
   const [editingProject, setEditingProject] = useState<ProjectRecord | undefined>();
   const [draft, setDraft] = useState<ProjectDraft>(emptyDraft);
@@ -145,6 +148,8 @@ export default function ProjectManager() {
         if (error) throw new Error(error.message);
         if (active && data.user) {
           setUserEmail(data.user.email);
+          setUserName(data.user.name ?? "");
+          setEmailVerified(data.user.emailVerified);
           await loadProjects();
         }
       } catch (error) {
@@ -320,40 +325,6 @@ export default function ProjectManager() {
     }
   }
 
-  async function handleAuthSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!neonAuthClient) return;
-    setSavingAuth(true);
-    setAuthError("");
-
-    try {
-      const result =
-        authMode === "sign-up"
-          ? await neonAuthClient.signUp.email({
-              name: email.split("@")[0] || "Portfolio admin",
-              email,
-              password,
-            })
-          : await neonAuthClient.signIn.email({ email, password });
-
-      if (result.error) throw new Error(result.error.message);
-      const session = await neonAuthClient.getSession();
-      if (session.error) throw new Error(session.error.message);
-      if (!session.data.user) {
-        setNotice("Check your email to verify your account, then return here to sign in.");
-        setAuthMode("sign-in");
-        return;
-      }
-
-      setUserEmail(session.data.user.email);
-      await loadProjects();
-    } catch (error) {
-      setAuthError(getErrorMessage(error));
-    } finally {
-      setSavingAuth(false);
-    }
-  }
-
   async function handleSignOut() {
     if (!neonAuthClient) return;
     const { error } = await neonAuthClient.signOut();
@@ -362,6 +333,8 @@ export default function ProjectManager() {
       return;
     }
     setUserEmail("");
+    setUserName("");
+    setEmailVerified(false);
     setProjects([]);
     setEditingProject(undefined);
     setDraft(emptyDraft);
@@ -520,53 +493,24 @@ export default function ProjectManager() {
             Neon Auth is not configured. Set <code>VITE_NEON_AUTH_URL</code> and restart the frontend.
           </p>
         ) : !isAuthenticated ? (
-          <section className="project-manager__auth" aria-labelledby="project-auth-title">
-            <h2 id="project-auth-title">{authMode === "sign-in" ? "Sign in to continue." : "Create your admin account."}</h2>
-            <p>
-              Only the verified account matching <code>ADMIN_EMAIL</code> can change project records.
-            </p>
-            {authError && <p className="project-manager__message project-manager__message--error" role="alert">{authError}</p>}
-            {notice && <p className="project-manager__message" role="status">{notice}</p>}
-            <form className="project-manager__form project-manager__auth-form" onSubmit={handleAuthSubmit}>
-              <label>
-                Email address
-                <input
-                  autoComplete="email"
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  required
-                />
-              </label>
-              <label>
-                Password
-                <input
-                  autoComplete={authMode === "sign-in" ? "current-password" : "new-password"}
-                  type="password"
-                  minLength={8}
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  required
-                />
-              </label>
-              <button className="project-manager__primary-button" type="submit" disabled={savingAuth}>
-                {savingAuth ? "Please wait…" : authMode === "sign-in" ? "Sign in" : "Create account"}
-              </button>
-            </form>
-            <button
-              className="project-manager__text-button project-manager__auth-switch"
-              type="button"
-              onClick={() => {
-                setAuthMode(authMode === "sign-in" ? "sign-up" : "sign-in");
-                setAuthError("");
-                setNotice("");
-              }}
-            >
-              {authMode === "sign-in" ? "First time here? Create an account" : "Already registered? Sign in"}
-            </button>
-          </section>
+          <NeonAdminAuthPanel
+            title="Sign in to continue."
+            description={<>Only the verified account matching <code>ADMIN_EMAIL</code> can change project records.</>}
+            onAuthenticated={async (identity: AdminAuthIdentity) => {
+              setUserEmail(identity.email);
+              setUserName(identity.name);
+              setEmailVerified(identity.emailVerified);
+              await loadProjects();
+            }}
+          />
         ) : (
           <>
+            <NeonAdminAccountSettings
+              email={userEmail}
+              name={userName}
+              emailVerified={emailVerified}
+              onNameChanged={setUserName}
+            />
             {authError && <p className="project-manager__message project-manager__message--error" role="alert">{authError}</p>}
             {notice && <p className="project-manager__message" role="status">{notice}</p>}
             {loadingProjects ? (

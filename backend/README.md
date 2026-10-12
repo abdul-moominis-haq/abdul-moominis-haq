@@ -44,9 +44,25 @@ Ed25519 detached-JWS signature against `NEON_AUTH_JWKS_URL`, rejects stale
 signatures, and allows only the `ADMIN_EMAIL` address. Configure the webhook
 before creating the admin account; it does not remove existing users.
 
+The same signed webhook endpoint handles `send.otp` and `send.magic_link` for
+branded authentication email. It sends through Resend and requires
+`RESEND_API_KEY` and a verified `FROM_EMAIL`; `AUTH_APP_NAME` controls the
+message branding. Configure those values before enabling either email-delivery
+event, because Neon skips its default delivery when a webhook is subscribed.
+The admin sign-in screens use verification and recovery codes, and the signed-in
+account settings allow the administrator to update their display name and
+change their password (which revokes other sessions).
+
+For local backend use, put backend-specific settings in `backend/.env`.
+The backend loads that file first and uses the repository-root `.env` as a
+fallback; environment variables already supplied by the process take
+precedence over both files.
+
 Set `ADMIN_EMAIL`, `NEON_AUTH_BASE_URL`, `NEON_AUTH_JWKS_URL`,
 `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and
-`CLOUDINARY_API_SECRET` in the repository-root `.env` for local backend use.
+`CLOUDINARY_API_SECRET` in either `backend/.env` or the repository-root
+`.env` for local backend use. Add `RESEND_API_KEY`, `FROM_EMAIL`, and optionally
+`AUTH_APP_NAME` before configuring Neon Auth email webhooks.
 The corresponding frontend build requires `VITE_NEON_AUTH_URL`; see the
 repository-root [deployment guide](../DEPLOYMENT.md) for Neon Auth, Cloudinary,
 Vercel, and migration setup. A safe variable template is at

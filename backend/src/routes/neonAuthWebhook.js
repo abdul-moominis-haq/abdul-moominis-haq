@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import { compactVerify, createRemoteJWKSet, errors } from 'jose';
+import { sendNeonAuthEmail } from '../mailer.js';
 
 const router = Router();
 const MAX_TIMESTAMP_AGE_MS = 5 * 60 * 1000;
@@ -138,12 +139,29 @@ router.post(
     const eventType = req.get('X-Neon-Event-Type');
     const eventId = req.get('X-Neon-Event-Id');
     if (
-      eventType !== 'user.before_create' ||
       payload.event_type !== eventType ||
       typeof eventId !== 'string' ||
       payload.event_id !== eventId
     ) {
       return res.status(400).json({ error: 'Unexpected or inconsistent Neon Auth webhook event' });
+    }
+
+    if (eventType === 'send.otp' || eventType === 'send.magic_link') {
+      try {
+        await sendNeonAuthEmail(payload);
+        return res.status(204).end();
+      } catch (error) {
+        console.error('Unable to deliver Neon Auth email:', {
+          eventId,
+          eventType,
+          message: error instanceof Error ? error.message : 'Unknown delivery error',
+        });
+        return res.status(502).json({ error: 'Unable to deliver Neon Auth email right now' });
+      }
+    }
+
+    if (eventType !== 'user.before_create') {
+      return res.status(400).json({ error: 'Unexpected Neon Auth webhook event' });
     }
 
     const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();

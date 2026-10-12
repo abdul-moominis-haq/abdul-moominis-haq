@@ -1,13 +1,7 @@
-import dotenv from 'dotenv';
 import { Client } from 'pg';
+import '../src/loadEnv.js';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// load repo root .env
-dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 const connectionString = process.env.DATABASE_URL;
 

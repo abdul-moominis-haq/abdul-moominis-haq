@@ -1,14 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { Pool } from 'pg';
-import dotenv from 'dotenv';
+import '../src/loadEnv.js';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// load repo root .env
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
-
 const MIGRATIONS_DIR = path.resolve(__dirname, '../prisma/migrations');
 
 const connectionString = process.env.DATABASE_URL;

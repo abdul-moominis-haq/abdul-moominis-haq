@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import './loadEnv.js';
 import { query } from './db.js';
 import Notification from './models/notification.js';
 import Newsletter from './models/newsletter.js';
@@ -11,10 +9,6 @@ import { sendConfirmationEmail } from './mailer.js';
 import projectsRouter from './routes/projects.js';
 import contentRouter from './routes/content.js';
 import neonAuthWebhookRouter from './routes/neonAuthWebhook.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const app = express();
 

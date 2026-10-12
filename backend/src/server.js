@@ -1,3 +1,4 @@
+import './loadEnv.js';
 import app from './app.js';
 
 const DEFAULT_PORT = Number(process.env.PORT) || 4000;

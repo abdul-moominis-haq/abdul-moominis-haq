@@ -8,6 +8,11 @@ import {
   type PortfolioAsset,
   type PortfolioContent,
 } from "@/data/portfolioContent";
+import {
+  NeonAdminAccountSettings,
+  NeonAdminAuthPanel,
+  type AdminAuthIdentity,
+} from "@/components/NeonAdminAuth";
 import { neonAuthClient } from "@/lib/neonAuth";
 import { projectAdminRequest, ProjectAdminApiError } from "@/lib/projectAdminApi";
 
@@ -178,11 +183,9 @@ export default function AdminDashboard() {
   const queryClient = useQueryClient();
   const fileInput = useRef<HTMLInputElement>(null);
   const [loadingSession, setLoadingSession] = useState(true);
-  const [savingAuth, setSavingAuth] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [authMode, setAuthMode] = useState<"sign-in" | "sign-up">("sign-in");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [emailVerified, setEmailVerified] = useState(false);
   const [activeSection, setActiveSection] = useState<ContentSection>("home");
   const [documents, setDocuments] = useState<PortfolioContent>(defaultPortfolioContent);
   const [pendingAssets, setPendingAssets] = useState<PendingAssets>({});
@@ -243,6 +246,8 @@ export default function AdminDashboard() {
         if (error) throw new Error(error.message);
         if (active && data.user) {
           setUserEmail(data.user.email);
+          setUserName(data.user.name ?? "");
+          setEmailVerified(data.user.emailVerified);
           await loadContent();
         }
       } catch (error) {
@@ -264,42 +269,6 @@ export default function AdminDashboard() {
     setNotice("");
   }, [activeSection, documents]);
 
-  function handleAuthSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!neonAuthClient) return;
-    setSavingAuth(true);
-    setAuthError("");
-
-    void (async () => {
-      try {
-        const result =
-          authMode === "sign-up"
-            ? await neonAuthClient.signUp.email({
-                name: email.split("@")[0] || "Portfolio admin",
-                email,
-                password,
-              })
-            : await neonAuthClient.signIn.email({ email, password });
-
-        if (result.error) throw new Error(result.error.message);
-        const session = await neonAuthClient.getSession();
-        if (session.error) throw new Error(session.error.message);
-        if (!session.data.user) {
-          setNotice("Check your email to verify your account, then return here to sign in.");
-          setAuthMode("sign-in");
-          return;
-        }
-
-        setUserEmail(session.data.user.email);
-        await loadContent();
-      } catch (error) {
-        setAuthError(getErrorMessage(error));
-      } finally {
-        setSavingAuth(false);
-      }
-    })();
-  }
-
   async function handleSignOut() {
     if (!neonAuthClient) return;
     const { error } = await neonAuthClient.signOut();
@@ -308,6 +277,8 @@ export default function AdminDashboard() {
       return;
     }
     setUserEmail("");
+    setUserName("");
+    setEmailVerified(false);
     setAuthError("");
     setNotice("");
   }
@@ -579,51 +550,24 @@ export default function AdminDashboard() {
             Neon Auth is not configured. Set <code>VITE_NEON_AUTH_URL</code> and restart the frontend.
           </p>
         ) : !isAuthenticated ? (
-          <section className="project-manager__auth" aria-labelledby="portfolio-auth-title">
-            <h1 id="portfolio-auth-title">{authMode === "sign-in" ? "Sign in to manage your portfolio." : "Create your admin account."}</h1>
-            <p>Only the verified account matching <code>ADMIN_EMAIL</code> can change public portfolio content.</p>
-            {authError && <p className="project-manager__message project-manager__message--error" role="alert">{authError}</p>}
-            {notice && <p className="project-manager__message" role="status">{notice}</p>}
-            <form className="project-manager__form project-manager__auth-form" onSubmit={handleAuthSubmit}>
-              <label>
-                Email address
-                <input
-                  autoComplete="email"
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  required
-                />
-              </label>
-              <label>
-                Password
-                <input
-                  autoComplete={authMode === "sign-in" ? "current-password" : "new-password"}
-                  type="password"
-                  minLength={8}
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  required
-                />
-              </label>
-              <button className="project-manager__primary-button" type="submit" disabled={savingAuth}>
-                {savingAuth ? "Please wait…" : authMode === "sign-in" ? "Sign in" : "Create account"}
-              </button>
-            </form>
-            <button
-              className="project-manager__text-button project-manager__auth-switch"
-              type="button"
-              onClick={() => {
-                setAuthMode(authMode === "sign-in" ? "sign-up" : "sign-in");
-                setAuthError("");
-                setNotice("");
-              }}
-            >
-              {authMode === "sign-in" ? "First time here? Create an account" : "Already registered? Sign in"}
-            </button>
-          </section>
+          <NeonAdminAuthPanel
+            title="Sign in to manage your portfolio."
+            description={<>Only the verified account matching <code>ADMIN_EMAIL</code> can change public portfolio content.</>}
+            onAuthenticated={async (identity: AdminAuthIdentity) => {
+              setUserEmail(identity.email);
+              setUserName(identity.name);
+              setEmailVerified(identity.emailVerified);
+              await loadContent();
+            }}
+          />
         ) : (
           <>
+            <NeonAdminAccountSettings
+              email={userEmail}
+              name={userName}
+              emailVerified={emailVerified}
+              onNameChanged={setUserName}
+            />
             <div className="admin-dashboard__heading">
               <div>
                 <h1>Portfolio editor</h1>

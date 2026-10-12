@@ -960,6 +960,67 @@
   text-underline-offset: 0.2em;
 }
 
+.admin-auth-workflow h2,
+.admin-auth-settings h2 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.admin-auth-workflow__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: 0.8rem;
+}
+
+.admin-auth-settings {
+  margin-bottom: 1.25rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--enamel));
+}
+
+.admin-auth-settings > summary {
+  padding: 0.9rem 1rem;
+  color: hsl(var(--primary));
+  cursor: pointer;
+  font-weight: 650;
+  text-underline-offset: 0.2em;
+}
+
+.admin-auth-settings[open] > summary {
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.admin-auth-settings__content {
+  padding: 1rem;
+}
+
+.admin-auth-settings__identity,
+.admin-auth-settings__help {
+  margin: 0 0 1rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.admin-auth-settings__identity strong {
+  color: hsl(var(--foreground));
+  overflow-wrap: anywhere;
+}
+
+.admin-auth-settings__forms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.admin-auth-settings__forms h2 {
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.admin-auth-settings__help {
+  font-size: 0.9rem;
+}
+
 .project-manager__message {
   margin: 0 0 1rem;
   padding: 0.65rem 0.8rem;
@@ -1749,6 +1810,10 @@
 }
 
 @media (max-width: 720px) {
+  .admin-auth-settings__forms {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .site-header {
     position: relative;
   }
